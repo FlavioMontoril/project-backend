@@ -5,13 +5,14 @@ import * as findAllRolesController from "infra/controller/role-controller.ts/fin
 import * as findByIdRoleController from "infra/controller/role-controller.ts/find-by-id-role-controller.js";
 import * as findByRoleTypeController from "infra/controller/role-controller.ts/find-by-role-type-controller.js";
 import * as updateRoleController from "infra/controller/role-controller.ts/update-role-controller.js";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticate.js";
 
 export const router = Router()
 
 router
-.post('/', createRoleController.default.handle)
-.delete('/:id', deleteRoleController.default.handle)
-.put('/:id', updateRoleController.default.handle)
-.get('/all', findAllRolesController.default.handle)
-.get('/:id', findByIdRoleController.default.handle)
-.get('/:name/option', findByRoleTypeController.default.handle)
+.post('/', ensureAuthenticated, createRoleController.default.handle)
+.delete('/:id', ensureAuthenticated, deleteRoleController.default.handle)
+.put('/:id', ensureAuthenticated, updateRoleController.default.handle)
+.get('/all', ensureAuthenticated, findAllRolesController.default.handle)
+.get('/:id', ensureAuthenticated, findByIdRoleController.default.handle)
+.get('/:name/option', ensureAuthenticated, findByRoleTypeController.default.handle)

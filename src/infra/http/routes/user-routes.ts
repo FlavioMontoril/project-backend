@@ -6,13 +6,14 @@ import * as findUserByEmailController from "infra/controller/user-controller.ts/
 import * as findUserByIdController from "infra/controller/user-controller.ts/find-user-by-id-controller.js"
 import * as updatePasswordUserController from "infra/controller/user-controller.ts/update-password-user-controller.js"
 import * as updateUserController from "infra/controller/user-controller.ts/update-user-controller.js"
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticate.js"
 
 export const router = Router()
 router
-.post('/', createUserController.default.handle)
-.delete('/:id', deleteUserController.default.handle)
-.put('/:id/update', updateUserController.default.handle)
-.put('/password/:id', updatePasswordUserController.default.handle)
-.get('/:id/user', findUserByIdController.default.handle)
-.get('/:email', findUserByEmailController.default.handle)
-.get('/', findAllUsersController.default.handle)
+.post('/', ensureAuthenticated,  createUserController.default.handle)
+.delete('/:id', ensureAuthenticated,  deleteUserController.default.handle)
+.put('/:id/update', ensureAuthenticated, updateUserController.default.handle)
+.put('/password/:id', ensureAuthenticated, updatePasswordUserController.default.handle)
+.get('/:id/user', ensureAuthenticated, findUserByIdController.default.handle)
+.get('/:email', ensureAuthenticated, findUserByEmailController.default.handle)
+.get('/', ensureAuthenticated, findAllUsersController.default.handle)

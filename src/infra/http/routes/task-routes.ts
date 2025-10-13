@@ -5,12 +5,13 @@ import * as findAllTasksController from "infra/controller/task-controller.ts/fin
 import * as findByIdTaskController from "infra/controller/task-controller.ts/find-by-id-task-controller.js";
 import * as findTaskByTypeController from "infra/controller/task-controller.ts/find-task-by-type-controller.js";
 import * as updateTaskController from "infra/controller/task-controller.ts/update-task-controller.js";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticate.js";
 
 export const router = Router()
 router
-.post('/', createTaskController.default.handle)
-.put('/update/:id', updateTaskController.default.handle)
-.delete('/:id', deleteTaskController.default.handle)
-.get('/', findAllTasksController.default.handle)
-.get('/:id', findByIdTaskController.default.handle)
-.get('/:type', findTaskByTypeController.default.handle)
+.post('/', ensureAuthenticated, createTaskController.default.handle)
+.put('/update/:id', ensureAuthenticated, updateTaskController.default.handle)
+.delete('/:id', ensureAuthenticated, deleteTaskController.default.handle)
+.get('/', ensureAuthenticated, findAllTasksController.default.handle)
+.get('/:id', ensureAuthenticated, findByIdTaskController.default.handle)
+.get('/:type', ensureAuthenticated, findTaskByTypeController.default.handle)
