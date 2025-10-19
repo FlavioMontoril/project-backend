@@ -1,11 +1,9 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import { initializeDB } from './core/repository/databases/create-tables.js'
 import { router } from 'infra/http/express/routes.js'
 
 dotenv.config()
-initializeDB()
 
 const app = express()
 const PORT = process.env.PORT

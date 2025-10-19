@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id String @id @default(uuid())
+  summary String @db.VarChar(40)
+  description String @db.VarChar(100)
+  assignee String? @db.VarChar(50)
+  reporter String @db.VarChar(100)
+  type TaskType
+  status TaskStatus
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  userId String? @map("user_id")
+
+  @@map("tasks")
+}
+
+enum TaskType {
+  TASK
+  EPIC
+  BUG
+  SUB_TASK
+}
+enum TaskStatus {
+  OPEN
+  DONE
+  IN_PROGRESS
+  UNDER_REVIEW
+}

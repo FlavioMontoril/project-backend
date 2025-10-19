@@ -10,7 +10,7 @@ export interface TaskData{
     status: TaskStatus,
     createdAt?: Date,
     updatedAt?: Date,
-    userId: string
+    userId?: string
 }
 
 export enum TaskType{
