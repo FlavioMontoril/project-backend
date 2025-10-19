@@ -7,6 +7,7 @@ import z from "zod"
 
 class FindByIdTaskController{
     public async handle(req: Request, res: Response){
+        console.log("Controller")
         try{
 
             const paramasSchema = z.object({

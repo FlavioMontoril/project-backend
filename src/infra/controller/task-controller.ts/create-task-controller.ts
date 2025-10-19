@@ -6,7 +6,7 @@ import z from "zod"
 class CreateTaskController{
     public async handle(req: Request, res: Response){
         try{
-
+            
             const bodySchema = z.object({
                 summary: z.string(),
                 description: z.string(),
@@ -15,10 +15,11 @@ class CreateTaskController{
                 type: z.nativeEnum(TaskType),
                 status: z.nativeEnum(TaskStatus).optional(),
                 createdAt: z.string().optional(),
-                userId: z.string(),
+                userId: z.string().optional(),
             });
-
+            
             const body = bodySchema.parse(req.body)
+            console.log("body", body)
             const useCase = MakeCreateTaskUseCaseFactory.make()
             await useCase.execute({
                 summary: body.summary,
@@ -28,7 +29,7 @@ class CreateTaskController{
                 type: body.type,
                 status: body.status ?? TaskStatus.OPEN,
                 createdAt: body.createdAt ? new Date(body.createdAt) : new Date(),
-                userId: body.userId,
+                userId: body.userId ?? undefined,
             })
             res.status(201).json({message: 'Task Created Succesfully'})
             return

@@ -8,10 +8,11 @@ import * as updateTaskController from "infra/controller/task-controller.ts/updat
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticate.js";
 
 export const router = Router()
+
 router
 .post('/', ensureAuthenticated, createTaskController.default.handle)
 .put('/update/:id', ensureAuthenticated, updateTaskController.default.handle)
 .delete('/:id', ensureAuthenticated, deleteTaskController.default.handle)
 .get('/', ensureAuthenticated, findAllTasksController.default.handle)
 .get('/:id', ensureAuthenticated, findByIdTaskController.default.handle)
-.get('/:type', ensureAuthenticated, findTaskByTypeController.default.handle)
+.get('/type/:type', ensureAuthenticated, findTaskByTypeController.default.handle)
