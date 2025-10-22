@@ -5,7 +5,7 @@ export class Task {
     private readonly id: string
     private summary: string
     private description: string
-    private assignee?: string
+    private assignee: string | null
     private reporter: string
     private type: TaskType
     private status: TaskStatus
@@ -16,7 +16,7 @@ export class Task {
     private constructor(data: TaskData) {
         this.summary = data.summary,
         this.description = data.description,
-        this.assignee = data.assignee ?? undefined,
+        this.assignee = data.assignee ?? null,
         this.reporter = data.reporter,
         this.type = data.type,
         this.status = data.status,
@@ -38,7 +38,7 @@ export class Task {
     public getId(): string { return this.id }
     public getSummary(): string { return this.summary }
     public getDescription(): string { return this.description }
-    public getAssignee(): string | undefined { return this.assignee }
+    public getAssignee(): string | null { return this.assignee }
     public getReporter(): string { return this.reporter }
     public getType(): TaskType { return this.type }
     public getStatus(): TaskStatus { return this.status }
@@ -48,7 +48,7 @@ export class Task {
 
     public setSummary(summary: string = this.summary) { this.summary = summary; return this }
     public setDescription(description: string = this.description) { this.description = description; return this }
-    public setAssignee(assignee: string | undefined = this.assignee) { this.assignee = assignee; return this }
+    public setAssignee(assignee: string | null = this.assignee) { this.assignee = assignee; return this }
     public setReporter(reporter: string = this.reporter) { this.reporter = reporter; return this }
     public setType(type: TaskType = this.type) { this.type = type; return this }
     public setStatus(status: TaskStatus = this.status) { this.status = status; return this }

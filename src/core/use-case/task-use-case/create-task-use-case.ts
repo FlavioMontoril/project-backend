@@ -12,7 +12,7 @@ export class CreateTaskUseCase{
         const newTask = Task.build({
             summary: payload.summary,
             description: payload.description,
-            assignee: payload.assignee ?? undefined,
+            assignee: payload.assignee ?? null,
             reporter: payload.reporter,
             type: payload.type,
             status: payload.status ?? TaskStatus.OPEN,

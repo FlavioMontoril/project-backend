@@ -4,7 +4,7 @@ export interface TaskData{
     id?: string,
     summary: string,
     description: string,
-    assignee?: string,
+    assignee: string | null,
     reporter: string,
     type: TaskType,
     status: TaskStatus,

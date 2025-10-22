@@ -21,7 +21,7 @@ export class TaskMapper {
             id: raw.id,
             summary: raw.summary,
             description: raw.description,
-            assignee: raw.assignee ?? undefined,
+            assignee: raw.assignee ?? null,
             reporter: raw.reporter,
             type: raw.type as TaskType,
             status: raw.status as TaskStatus,
