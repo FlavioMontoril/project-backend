@@ -11,7 +11,7 @@ export class User {
     private roleId: string;
     private readonly createdAt: Date;
     private updatedAt?: Date;
-    private tasks?: TaskData[]
+    private tasks: TaskData[]
 
     private constructor(data: UserData) {
         this.name = data.name,
@@ -21,7 +21,7 @@ export class User {
             this.roleId = data.roleId,
             this.createdAt = new Date(),
             this.updatedAt = this.updatedAt ?? undefined
-        this.tasks = data.tasks ?? undefined
+        this.tasks = data.tasks
 
         if (!data.id) {
             this.id = randomUUID()
@@ -42,7 +42,7 @@ export class User {
     public getRoleId(): string { return this.roleId }
     public getCreatedAt(): Date { return this.createdAt }
     public getUpdatedAt(): Date | undefined { return this.updatedAt }
-    public getTasks(): TaskData[] | undefined {return this.tasks}
+    public getTasks(): TaskData[] | undefined { return this.tasks }
 
     public setName(name: string) { this.name = name; return this }
     public setEmail(email: string) { this.email = email; return this }
@@ -50,7 +50,7 @@ export class User {
     public setDepartment(department: string) { this.department = department; return this }
     public setRoleId(roleId: string) { this.roleId = roleId; return this }
     public setUpdatedAt(updatedAt: Date | undefined = this.updatedAt) { this.updatedAt = updatedAt; return this }
-    public setTasks(tasks: TaskData[] | undefined) {this.tasks = tasks; return this}
+    public setTasks(tasks: TaskData[]) { this.tasks = tasks; return this }
 
     public toJSON() {
         return {
@@ -61,7 +61,7 @@ export class User {
             department: this.department,
             roleId: this.roleId,
             createdAt: this.createdAt,
-            updatedAt: this.updatedAt,
+            updatedAt: this.updatedAt ?? null,
             tasks: this.tasks,
         }
     }

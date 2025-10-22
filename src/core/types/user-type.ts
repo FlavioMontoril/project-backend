@@ -4,10 +4,10 @@ export interface UserData {
     id?: string;
     name: string;
     email: string;
-    passwordHash?: string;
+    passwordHash: string;
     department: string;
     roleId: string;
     createdAt?: Date;
     updatedAt?: Date;
-    tasks?: TaskData[];
+    tasks: TaskData[];
 }

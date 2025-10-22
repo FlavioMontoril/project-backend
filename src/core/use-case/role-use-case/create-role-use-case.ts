@@ -9,8 +9,9 @@ interface RoleRequestDTO {
 }
 
 export class CreateRoleUseCase {
-    constructor(private readonly repository: RoleRepository) {}
+    constructor(private readonly repository: RoleRepository) { }
     public async execute(payload: RoleRequestDTO) {
+
         if (!payload.name || !payload.description) {
             throw new InvalidPropertiesException()
         }
@@ -18,7 +19,7 @@ export class CreateRoleUseCase {
         const existingTole = await this.repository.findByOptions(payload.name)
         if(existingTole){
             throw new Error("Resource Already Exists Error")
-        }   
+        }
         const newRole = Role.build({
             name: payload.name,
             description: payload.description,

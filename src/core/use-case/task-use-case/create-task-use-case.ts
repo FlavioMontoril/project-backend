@@ -6,7 +6,6 @@ import { TaskStatus, type TaskData } from "core/types/task-types.js";
 export class CreateTaskUseCase{
     constructor(private readonly repository: TaskRepository){}
     public async execute(payload: TaskData){
-        console.log("Payload", payload)
         if(!payload.description || !payload.reporter || !payload.status || !payload.summary){
             throw new InvalidPropertiesException()
         }
@@ -17,8 +16,8 @@ export class CreateTaskUseCase{
             reporter: payload.reporter,
             type: payload.type,
             status: payload.status ?? TaskStatus.OPEN,
-            createdAt: payload.createdAt ? new Date(payload.createdAt) : new Date(),
-            updatedAt: undefined,
+            createdAt: payload.createdAt,
+            updatedAt: null,
             userId: payload.userId ?? undefined
         })
         await this.repository.create(newTask)

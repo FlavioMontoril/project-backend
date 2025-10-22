@@ -60,12 +60,12 @@ export class Task {
             id: this.id,
             summary: this.summary,
             description: this.description,
-            assignee: this.assignee,
+            assignee: this.assignee ?? null,
             reporter: this.reporter,
             type: this.type,
             status: this.status,
             createdAt: this.createdAt,
-            updatedAt: this.updatedAt,
+            updatedAt: this.updatedAt ?? null,
             userId: this.userId
         }
     }
