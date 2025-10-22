@@ -1,6 +1,6 @@
 import { Task } from "core/entities/task-entitie.js";
 import type { Task as PrismaTask } from "../../../../generated/prisma/index.js"
-import type { TaskStatus, TaskType } from "core/types/task-types.js";
+import type { TaskData, TaskStatus, TaskType } from "core/types/task-types.js";
 export class TaskMapper {
     public static toPersistence(entity: Task): PrismaTask {
         return {
@@ -26,7 +26,7 @@ export class TaskMapper {
             type: raw.type as TaskType,
             status: raw.status as TaskStatus,
             createdAt: raw.createdAt ?? new Date(),
-            updatedAt: raw.updatedAt ?? undefined,
+            updatedAt: raw.updatedAt,
             userId: raw.userId ?? undefined,
         })
     }

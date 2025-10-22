@@ -24,11 +24,11 @@ export class UpdateTaskUseCase {
         task
         if (payload.summary != undefined) task.setSummary(payload.summary)
         if (payload.description != undefined) task.setDescription(payload.description)
+        if (payload.assignee != undefined) task.setAssignee(payload.assignee)
         if (payload.reporter != undefined) task.setReporter(payload.reporter)
         if (payload.type) task.setType(payload.type)
         if (payload.status) task.setStatus(payload.status)
         task.setUpdatedAt(new Date())
-        task.setAssignee(payload.assignee)
 
         const updatedTask = await this.repository.update(task)
         return updatedTask

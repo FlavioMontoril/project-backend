@@ -1,4 +1,3 @@
-import { Task } from "core/entities/task-entitie.js"
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
 import { MakeFindAllTasksUseCaseFactory } from "core/factory/task-factory/make-find-all-tasks-use-case-factory.js"
 import type { Request, Response } from "express"

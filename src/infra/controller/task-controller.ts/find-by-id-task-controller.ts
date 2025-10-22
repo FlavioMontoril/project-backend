@@ -1,13 +1,10 @@
-import { Task } from "core/entities/task-entitie.js"
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeFindAllTasksUseCaseFactory } from "core/factory/task-factory/make-find-all-tasks-use-case-factory.js"
 import { MakeFindByIdTaskFactory } from "core/factory/task-factory/make-find-by-id-use-case-factory.js"
 import type { Request, Response } from "express"
 import z from "zod"
 
 class FindByIdTaskController{
     public async handle(req: Request, res: Response){
-        console.log("Controller")
         try{
 
             const paramasSchema = z.object({

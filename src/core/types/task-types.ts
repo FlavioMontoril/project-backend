@@ -9,7 +9,7 @@ export interface TaskData{
     type: TaskType,
     status: TaskStatus,
     createdAt?: Date,
-    updatedAt?: Date,
+    updatedAt?: Date | null,
     userId?: string
 }
 

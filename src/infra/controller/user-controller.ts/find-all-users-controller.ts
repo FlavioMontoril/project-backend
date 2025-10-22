@@ -10,7 +10,6 @@ class FindAllUsersController {
             const useCase = MakeFindAllUsersFactory.make()
             const users = await useCase.execute()
             const userToJSON = users.map(user => user.toJSON())
-            console.log("To JSON", userToJSON)
             res.status(200).json(userToJSON)
             return
         } catch (error) {

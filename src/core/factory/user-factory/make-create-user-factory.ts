@@ -1,11 +1,11 @@
-import { SQLiteRoleRepository } from "core/repository/databases/sqlite-role-repository.js";
-import { SQLiteUserRepository } from "core/repository/databases/sqlite-user-repository.js";
+import { PrismaRoleRepository } from "adapters/database/prisma/role/prisma-role-repository.js";
+import { PrismaUserRepository } from "adapters/database/prisma/user/prisma-user-repository.js";
 import { CreateUserUseCase } from "core/use-case/user-use-case/create-use-case.js";
 
 export abstract class MakeCreateUserFactory{
     public static make(){
-        const userRepository = new SQLiteUserRepository()
-          const roleRepository = new SQLiteRoleRepository();
+        const userRepository = new PrismaUserRepository()
+          const roleRepository = new PrismaRoleRepository();
         const useCase = new CreateUserUseCase(userRepository, roleRepository)
         return useCase
     }
