@@ -24,7 +24,7 @@ class CreateTaskController{
             await useCase.execute({
                 summary: body.summary,
                 description: body.description,
-                assignee: body.assignee,
+                assignee: body.assignee ?? null,
                 reporter: body.reporter,
                 type: body.type,
                 status: body.status ?? TaskStatus.OPEN,
