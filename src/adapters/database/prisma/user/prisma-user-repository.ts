@@ -24,20 +24,28 @@ export class PrismaUserRepository implements UserRepository {
         return UserMapper.toDomain(rawUser)
     }
     public async findById(id: string): Promise<User | null> {
-        console.log("id", id)
         const rawUser = await prisma.user.findUnique({
             where: { id },
             include: { tasks: true }
         });
-        console.log("PRISMA", rawUser)
         if (!rawUser) return null
         const nenem = UserMapper.toDomain(rawUser)
-        console.log("nenem", nenem)
         return nenem
     }
     public async delete(id: string):Promise<void>{
         await prisma.user.delete({
             where: {id}
         })
+    }
+
+    public async update(user: User):Promise<User>{
+        const rawUser:PrismaUser = UserMapper.toPersistence(user)
+
+        const updateUser = await prisma.user.update({
+            where: {id: user?.getId().toString()},
+            data: rawUser,
+        })
+
+        return UserMapper.toDomain(updateUser)
     }
 }

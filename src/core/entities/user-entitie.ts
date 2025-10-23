@@ -10,7 +10,7 @@ export class User {
     private department: string;
     private roleId: string;
     private readonly createdAt: Date;
-    private updatedAt?: Date;
+    private updatedAt: Date | null;
     private tasks: TaskData[]
 
     private constructor(data: UserData) {
@@ -20,7 +20,7 @@ export class User {
             this.department = data.department,
             this.roleId = data.roleId,
             this.createdAt = new Date(),
-            this.updatedAt = this.updatedAt ?? undefined
+            this.updatedAt = new Date() ?? null
         this.tasks = data.tasks
 
         if (!data.id) {
@@ -41,7 +41,7 @@ export class User {
     public getDepartment(): string { return this.department }
     public getRoleId(): string { return this.roleId }
     public getCreatedAt(): Date { return this.createdAt }
-    public getUpdatedAt(): Date | undefined { return this.updatedAt }
+    public getUpdatedAt(): Date | null { return this.updatedAt }
     public getTasks(): TaskData[] | undefined { return this.tasks }
 
     public setName(name: string) { this.name = name; return this }
@@ -49,7 +49,7 @@ export class User {
     public setPasswordHash(passwordHash: string) { this.passwordHash = passwordHash; return this }
     public setDepartment(department: string) { this.department = department; return this }
     public setRoleId(roleId: string) { this.roleId = roleId; return this }
-    public setUpdatedAt(updatedAt: Date | undefined = this.updatedAt) { this.updatedAt = updatedAt; return this }
+    public setUpdatedAt(updatedAt: Date | null = this.updatedAt) { this.updatedAt = updatedAt; return this }
     public setTasks(tasks: TaskData[]) { this.tasks = tasks; return this }
 
     public toJSON() {
