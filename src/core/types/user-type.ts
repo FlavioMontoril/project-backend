@@ -8,6 +8,6 @@ export interface UserData {
     department: string;
     roleId: string;
     createdAt?: Date;
-    updatedAt?: Date;
+    updatedAt: Date | null;
     tasks: TaskData[];
 }
