@@ -19,7 +19,6 @@ class CreateTaskController{
             });
             
             const body = bodySchema.parse(req.body)
-            console.log("body", body)
             const useCase = MakeCreateTaskUseCaseFactory.make()
             await useCase.execute({
                 summary: body.summary,

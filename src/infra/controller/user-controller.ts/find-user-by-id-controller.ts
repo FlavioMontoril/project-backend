@@ -14,7 +14,6 @@ class FindUserByIdController {
             const useCase = MakeFindUserById.make()
             const user = await useCase.execute(id)
             const userJson = user.toJSON()
-            console.log(userJson)
             res.status(200).json(userJson)
             return
         } catch (error) {
