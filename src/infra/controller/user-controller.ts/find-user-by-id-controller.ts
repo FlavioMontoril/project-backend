@@ -13,8 +13,9 @@ class FindUserByIdController {
             const {id} = paramsSchema.parse(req.params)
             const useCase = MakeFindUserById.make()
             const user = await useCase.execute(id)
-            console.log("USER", user)
-            res.status(200).json(user.toJSON())
+            const userJson = user.toJSON()
+            console.log(userJson)
+            res.status(200).json(userJson)
             return
         } catch (error) {
             if (error instanceof z.ZodError) {

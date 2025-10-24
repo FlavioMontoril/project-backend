@@ -15,16 +15,16 @@ datasource db {
 }
 
 model Task {
-  id String @id @default(uuid())
-  summary String @db.VarChar(40)
-  description String @db.VarChar(100)
-  assignee String? @db.VarChar(50)
-  reporter String @db.VarChar(100)
-  type TaskType
-  status TaskStatus
-  createdAt DateTime? @map("created_at")
-  updatedAt DateTime? @map("updated_at")
-  userId String? @map("user_id")
+  id          String     @id @default(uuid())
+  summary     String     @db.VarChar(40)
+  description String     @db.VarChar(100)
+  assignee    String?    @db.VarChar(50)
+  reporter    String     @db.VarChar(100)
+  type        TaskType
+  status      TaskStatus
+  createdAt   DateTime?  @map("created_at")
+  updatedAt   DateTime?  @map("updated_at")
+  userId      String?    @map("user_id")
 
   user User? @relation(fields: [userId], references: [id])
 
@@ -37,6 +37,7 @@ enum TaskType {
   BUG
   SUB_TASK
 }
+
 enum TaskStatus {
   OPEN
   DONE
@@ -45,30 +46,34 @@ enum TaskStatus {
 }
 
 model Role {
-  id String @id @default(uuid())
-  name RoleOptions
-  description String @db.VarChar(100)
-  createdAt DateTime @map("created_at")
-  updatedAt DateTime? @map("updated_at")
+  id          String      @id @default(uuid())
+  name        RoleOptions
+  description String      @db.VarChar(100)
+  createdAt   DateTime    @map("created_at")
+  updatedAt   DateTime?   @map("updated_at")
+  user        User[]
+
   @@map("roles")
 }
 
 enum RoleOptions {
-    MASTER
-    ADMIN
-    COMMON
-    GUEST
+  MASTER
+  ADMIN
+  COMMON
+  GUEST
 }
 
 model User {
-  id String @id @default(uuid())
-  name String @db.VarChar(50)
-  email String @unique
-  passwordHash String @map("password_hash")
-  department String @db.VarChar(50)
-  roleId String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime? @map("updated_at")
-  tasks Task[]
+  id           String    @id @default(uuid())
+  name         String    @db.VarChar(50)
+  email        String    @unique
+  passwordHash String    @map("password_hash")
+  department   String    @db.VarChar(50)
+  roleId       String
+  role         Role      @relation(fields: [roleId], references: [id])
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime? @map("updated_at")
+  tasks        Task[]
+
   @@map("users")
 }

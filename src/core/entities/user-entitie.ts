@@ -1,6 +1,6 @@
-import type { TaskData } from "core/types/task-types.js";
 import type { UserData } from "core/types/user-type.js";
 import { randomUUID } from "crypto";
+import type { Task } from "./task-entitie.js";
 
 export class User {
     private readonly id: string;
@@ -11,7 +11,7 @@ export class User {
     private roleId: string;
     private readonly createdAt: Date;
     private updatedAt: Date | null;
-    private tasks: TaskData[]
+    private tasks: Task[]
 
     private constructor(data: UserData) {
         this.name = data.name,
@@ -42,7 +42,7 @@ export class User {
     public getRoleId(): string { return this.roleId }
     public getCreatedAt(): Date { return this.createdAt }
     public getUpdatedAt(): Date | null { return this.updatedAt }
-    public getTasks(): TaskData[] | undefined { return this.tasks }
+    public getTasks(): Task[] | undefined { return this.tasks }
 
     public setName(name: string) { this.name = name; return this }
     public setEmail(email: string) { this.email = email; return this }
@@ -50,7 +50,7 @@ export class User {
     public setDepartment(department: string) { this.department = department; return this }
     public setRoleId(roleId: string) { this.roleId = roleId; return this }
     public setUpdatedAt(updatedAt: Date | null = this.updatedAt) { this.updatedAt = updatedAt; return this }
-    public setTasks(tasks: TaskData[]) { this.tasks = tasks; return this }
+    // public setTasks(tasks: TaskData[]) { this.tasks = tasks; return this }
 
     public toJSON() {
         return {
@@ -62,7 +62,7 @@ export class User {
             roleId: this.roleId,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt ?? null,
-            tasks: this.tasks,
+            tasks: this.tasks.map(use=> use.toJSON())
         }
     }
 }

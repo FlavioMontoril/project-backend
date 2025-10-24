@@ -1,15 +1,20 @@
 import { Role } from "core/entities/role-entitie.js";
 import type { Role as PrismaRole } from "../../../../generated/prisma/index.js"
+import type { User as PrismaUser } from "../../../../generated/prisma/index.js"
 import type { RoleOptions } from "core/types/role-types.js";
+import { UserMapper } from "../user/user-mapper.js";
 
 export class RoleMapper {
-    public static toDomain(raw: PrismaRole): Role {
+    public static toDomain(raw: PrismaRole & { user?: PrismaUser[] }): Role {
+
+        const users = raw.user ? raw.user.map((user) => UserMapper.toDomain(user)) : []
         return Role.build({
             id: raw.id,
             name: raw.name as RoleOptions,
             description: raw.description,
             createdAt: raw.createdAt,
-            updatedAt: raw.updatedAt ?? undefined
+            updatedAt: raw.updatedAt ?? undefined,
+            user: users,
         });
     }
     public static toPersistence(entity: Role): PrismaRole {
