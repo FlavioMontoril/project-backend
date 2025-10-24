@@ -43,6 +43,7 @@ export class PrismaRoleRepository implements RoleRepository{
     public async findById(id: string):Promise<Role | null> {
         const rawRole: PrismaRole | null = await prisma.role.findUnique({
             where: {id},
+            include: {user: true}
         });
         if(!rawRole) return null
         return RoleMapper.toDomain(rawRole)

@@ -14,8 +14,9 @@ export class UserMapper {
             department: raw.department,
             roleId: raw.roleId,
             createdAt: raw.createdAt,
-            updatedAt: raw.updatedAt ?? undefined,
-            tasks: raw.tasks?.map(taskRaw => TaskMapper.toDomain(taskRaw).toJSON()) ?? []
+            updatedAt: raw.updatedAt ?? null,
+            tasks: raw.tasks?.map(taskRaw => TaskMapper.toDomain(taskRaw)) ?? []
+
         })
     }
 
