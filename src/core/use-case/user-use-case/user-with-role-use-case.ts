@@ -18,11 +18,8 @@ export class UserWithRoleUseCase {
     ) {}
 
     public async execute(email: string){
-
-        console.log("tutu")
         const user = await this.userRepository.findByEmail(email)
         if(!user) return null
-        // let role: RoleData
 
         if(user.getRoleId()){
             const role = await this.roleRepository.findById(user.getRoleId())

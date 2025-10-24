@@ -29,8 +29,7 @@ export class PrismaUserRepository implements UserRepository {
             include: { tasks: true }
         });
         if (!rawUser) return null
-        const nenem = UserMapper.toDomain(rawUser)
-        return nenem
+        return UserMapper.toDomain(rawUser)
     }
     public async delete(id: string):Promise<void>{
         await prisma.user.delete({

@@ -20,7 +20,7 @@ export class User {
             this.department = data.department,
             this.roleId = data.roleId,
             this.createdAt = new Date(),
-            this.updatedAt = new Date() ?? null
+            this.updatedAt = data.updatedAt ?? null
         this.tasks = data.tasks
 
         if (!data.id) {
@@ -50,7 +50,6 @@ export class User {
     public setDepartment(department: string) { this.department = department; return this }
     public setRoleId(roleId: string) { this.roleId = roleId; return this }
     public setUpdatedAt(updatedAt: Date | null = this.updatedAt) { this.updatedAt = updatedAt; return this }
-    // public setTasks(tasks: TaskData[]) { this.tasks = tasks; return this }
 
     public toJSON() {
         return {

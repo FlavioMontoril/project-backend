@@ -7,14 +7,13 @@ import { UserMapper } from "../user/user-mapper.js";
 export class RoleMapper {
     public static toDomain(raw: PrismaRole & { user?: PrismaUser[] }): Role {
 
-        const users = raw.user ? raw.user.map((user) => UserMapper.toDomain(user)) : []
         return Role.build({
             id: raw.id,
             name: raw.name as RoleOptions,
             description: raw.description,
             createdAt: raw.createdAt,
             updatedAt: raw.updatedAt ?? undefined,
-            user: users,
+            user: raw.user?.map((user) => UserMapper.toDomain(user)) ?? []
         });
     }
     public static toPersistence(entity: Role): PrismaRole {

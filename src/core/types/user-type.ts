@@ -1,5 +1,4 @@
 import type { Task } from "core/entities/task-entitie.js";
-import type { TaskData } from "./task-types.js";
 
 export interface UserData {
     id?: string;
@@ -8,7 +7,7 @@ export interface UserData {
     passwordHash: string;
     department: string;
     roleId: string;
-    createdAt?: Date;
+    createdAt: Date;
     updatedAt: Date | null;
     tasks: Task[];
 }
