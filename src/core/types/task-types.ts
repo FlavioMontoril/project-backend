@@ -4,10 +4,10 @@ export interface TaskData{
     id?: string,
     summary: string,
     description: string,
-    assignee: string | null,
+    assignee?: string | null,
     reporter: string,
     type: TaskType,
-    status: TaskStatus,
+    status?: TaskStatus,
     createdAt?: Date,
     updatedAt?: Date | null,
     userId?: string

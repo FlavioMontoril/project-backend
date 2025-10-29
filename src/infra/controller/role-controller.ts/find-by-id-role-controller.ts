@@ -11,7 +11,7 @@ class FindByIdRolerController {
                 id: z.string()
             })
             const {id} = paramsSchema.parse(req.params)
-            const useCase = MakeFindByIdRoleFactory.make()
+            const useCase = MakeFindByIdRoleFactory.build()
             const role = await useCase.execute(id)
             const roleToJSON = role.toJSON()
             res.status(200).json(roleToJSON)

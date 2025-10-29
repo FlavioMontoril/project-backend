@@ -14,25 +14,22 @@ export class User {
     private tasks: Task[]
 
     private constructor(data: UserData) {
-        this.name = data.name,
-            this.email = data.email,
-            this.passwordHash = data.passwordHash,
-            this.department = data.department,
-            this.roleId = data.roleId,
-            this.createdAt = new Date(),
-            this.updatedAt = data.updatedAt ?? null
-        this.tasks = data.tasks
-
-        if (!data.id) {
-            this.id = randomUUID()
-        } else {
-            this.id = data.id
-        }
+        this.id = data.id ?? randomUUID();
+        this.name = data.name;
+        this.email = data.email;
+        this.passwordHash = data.passwordHash;
+        this.department = data.department;
+        this.roleId = data.roleId;
+        this.createdAt = new Date();
+        this.updatedAt = data.updatedAt ?? null;
+        this.tasks = data.tasks ?? []
     }
 
     public static build(data: UserData) {
         return new User(data)
     }
+
+    private touch(){this.updatedAt = new Date(); return this}
 
     public getId(): string { return this.id }
     public getName(): string { return this.name }
@@ -44,12 +41,11 @@ export class User {
     public getUpdatedAt(): Date | null { return this.updatedAt }
     public getTasks(): Task[] | undefined { return this.tasks }
 
-    public setName(name: string) { this.name = name; return this }
-    public setEmail(email: string) { this.email = email; return this }
-    public setPasswordHash(passwordHash: string) { this.passwordHash = passwordHash; return this }
-    public setDepartment(department: string) { this.department = department; return this }
-    public setRoleId(roleId: string) { this.roleId = roleId; return this }
-    public setUpdatedAt(updatedAt: Date | null = this.updatedAt) { this.updatedAt = updatedAt; return this }
+    public setName(name: string) { this.name = name; return this.touch() }
+    public setEmail(email: string) { this.email = email; return this.touch() }
+    public setPasswordHash(passwordHash: string) { this.passwordHash = passwordHash; return this.touch() }
+    public setDepartment(department: string) { this.department = department; return this.touch() }
+    public setRoleId(roleId: string) { this.roleId = roleId; return this.touch() }
 
     public toJSON() {
         return {

@@ -11,7 +11,7 @@ class FindUserByIdController {
                 id: z.string()
             })
             const {id} = paramsSchema.parse(req.params)
-            const useCase = MakeFindUserById.make()
+            const useCase = MakeFindUserById.build()
             const user = await useCase.execute(id)
             const userJson = user.toJSON()
             res.status(200).json(userJson)

@@ -19,7 +19,7 @@ class UpdateRoleController {
 
             const {id} = paramsSchema.parse(req.params)
             const { name, description } = bodySchema.parse(req.body)
-            const useCase = MakeUpdateFactory.make()
+            const useCase = MakeUpdateFactory.build()
             const updatedRole = await useCase.execute(id,{name, description})
             res.status(200).json(updatedRole)
             return

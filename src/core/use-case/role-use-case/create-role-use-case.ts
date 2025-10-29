@@ -2,15 +2,11 @@ import { Role } from "core/entities/role-entitie.js";
 import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js";
 import type { RoleRepository } from "core/repository/contracts/role-repository.js";
 import type { RoleData, RoleOptions } from "core/types/role-types.js";
-
-interface RoleRequestDTO {
-    name: RoleOptions;
-    description: string;
-}
+import { randomUUID } from "crypto";
 
 export class CreateRoleUseCase {
     constructor(private readonly repository: RoleRepository) { }
-    public async execute(payload: RoleRequestDTO) {
+    public async execute(payload: RoleData) {
 
         if (!payload.name || !payload.description) {
             throw new InvalidPropertiesException()
@@ -21,10 +17,12 @@ export class CreateRoleUseCase {
             throw new Error("Resource Already Exists Error")
         }
         const newRole = Role.build({
-            name: payload.name,
+            id: randomUUID(),
+            name: payload.name as RoleOptions,
             description: payload.description,
             createdAt: new Date(),
-            updatedAt: undefined,
+            updatedAt: null,
+            user: [],
         });
         await this.repository.create(newRole)
     }

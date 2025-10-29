@@ -13,7 +13,7 @@ class FindTaskByTypeController {
             });
 
             const { type } = paramasSchema.parse(req.params)
-            const useCase = MakeFindByTypeTaskUsCase.make()
+            const useCase = MakeFindByTypeTaskUsCase.build()
             const task = await useCase.execute(type)
             const taskToJSON = task.map(task => task.toJSON())
             

@@ -12,7 +12,7 @@ class FindByIdTaskController{
             })
 
             const {id} = paramasSchema.parse(req.params)
-            const useCase = MakeFindByIdTaskFactory.make()
+            const useCase = MakeFindByIdTaskFactory.build()
 
             const task = await useCase.execute(id)
             const taskTOJSON = task.toJSON()

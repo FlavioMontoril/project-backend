@@ -6,6 +6,7 @@ interface UpdateRequestDto{
     description?: string,
 }
 export class UpdateRoleUseCase{
+    
     constructor(private readonly repository: RoleRepository){}
     public async execute(id: string, payload: UpdateRequestDto){
         const role = await this.repository.findById(id)

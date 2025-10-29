@@ -10,4 +10,4 @@ export class DeleteRoleUseCase{
         }
         await this.repository.delete(id)
     }
-}
+}''

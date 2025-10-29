@@ -6,7 +6,7 @@ class FindAllTasksController {
     public async handle(_: Request, res: Response) {
         try {
 
-            const useCase = MakeFindAllTasksUseCaseFactory.make()
+            const useCase = MakeFindAllTasksUseCaseFactory.build()
             const allTasks = await useCase.execute()
             const tasksTOJSON = allTasks.map(task => task.toJSON())
             res.status(200).json(tasksTOJSON)

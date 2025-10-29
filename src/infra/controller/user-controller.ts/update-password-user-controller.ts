@@ -19,7 +19,7 @@ class UpdatePasswordUserController{
             const {id} = paramsSchema.parse(req.params)
             const {currentPassword, newPassword} = bodySchema.parse(req.body)
 
-            const useCase = MakeUpdatePasswordUserFactory.make()
+            const useCase = MakeUpdatePasswordUserFactory.build()
             await useCase.execute(id,{currentPassword, newPassword})
             res.sendStatus(204);
             return
