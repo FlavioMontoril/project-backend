@@ -12,7 +12,7 @@ export class RoleMapper {
             name: raw.name as RoleOptions,
             description: raw.description,
             createdAt: raw.createdAt,
-            updatedAt: raw.updatedAt ?? undefined,
+            updatedAt: raw.updatedAt ?? null,
             user: raw.user?.map((user) => UserMapper.toDomain(user)) ?? []
         });
     }

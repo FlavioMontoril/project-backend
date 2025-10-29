@@ -4,9 +4,9 @@ export interface RoleData {
   id?: string;
   name: RoleOptions;
   description: string;
-  createdAt: Date;
-  updatedAt?: Date;
-  user: User[];
+  createdAt?: Date;
+  updatedAt?: Date | null;
+  user?: User[];
 }
 export enum RoleOptions {
     MASTER = 'MASTER',

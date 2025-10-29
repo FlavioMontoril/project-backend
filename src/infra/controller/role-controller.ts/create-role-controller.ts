@@ -12,7 +12,7 @@ class CreateRoleController{
                 description: z.string(),
             })
             const {name, description} = bodySchema.parse(req.body)
-            const useCase = MakeCreateRoleFactory.make()
+            const useCase = MakeCreateRoleFactory.build()
             await useCase.execute({name, description})
             res.status(201).json({message: 'Created Role Succcesfully'})
         }catch(error){

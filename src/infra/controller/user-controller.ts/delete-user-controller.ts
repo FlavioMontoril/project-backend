@@ -12,7 +12,7 @@ class DeleteUserController {
             })
 
             const {id} = paramsSchema.parse(req.params)
-            const useCase = MakeDeleteUser.make()
+            const useCase = MakeDeleteUser.build()
             await useCase.execute(id)
             res.sendStatus(204)
         } catch (error) {

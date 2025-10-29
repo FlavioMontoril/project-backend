@@ -7,7 +7,7 @@ class FindAllUsersController {
     public async handle(_: Request, res: Response) {
         try {
 
-            const useCase = MakeFindAllUsersFactory.make()
+            const useCase = MakeFindAllUsersFactory.build()
             const users = await useCase.execute()
             const userToJSON = users.map(user => user.toJSON())
             res.status(200).json(userToJSON)

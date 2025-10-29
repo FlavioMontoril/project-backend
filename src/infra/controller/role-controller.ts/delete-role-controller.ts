@@ -11,7 +11,8 @@ class DeleteRoleController {
                 id: z.string()
             })
             const { id } = paramsSchema.parse(req.params)
-            const useCase = MakeDeleteRoleFactory.make()
+            const useCase = MakeDeleteRoleFactory.build()
+
             await useCase.execute(id)
 
             res.sendStatus(204)

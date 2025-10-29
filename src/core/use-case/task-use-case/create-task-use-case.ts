@@ -16,8 +16,7 @@ export class CreateTaskUseCase{
             reporter: payload.reporter,
             type: payload.type,
             status: payload.status ?? TaskStatus.OPEN,
-            createdAt: payload.createdAt,
-            updatedAt: null,
+            createdAt: payload.createdAt ?? new Date(),
             userId: payload.userId ?? undefined
         })
         await this.repository.create(newTask)

@@ -18,18 +18,9 @@ class CreateTaskController{
                 userId: z.string().optional(),
             });
             
-            const body = bodySchema.parse(req.body)
-            const useCase = MakeCreateTaskUseCaseFactory.make()
-            await useCase.execute({
-                summary: body.summary,
-                description: body.description,
-                assignee: body.assignee ?? null,
-                reporter: body.reporter,
-                type: body.type,
-                status: body.status ?? TaskStatus.OPEN,
-                createdAt: body.createdAt ? new Date(body.createdAt) : new Date(),
-                userId: body.userId ?? undefined,
-            })
+            const {summary, description, assignee, reporter, type, status, createdAt, userId} = bodySchema.parse(req.body)
+            const useCase = MakeCreateTaskUseCaseFactory.build()
+            await useCase.execute({summary, description, assignee, reporter, type, status, createdAt: createdAt ? new Date(createdAt) : new Date(), userId})
             res.status(201).json({message: 'Task Created Succesfully'})
             return
         }catch(error){

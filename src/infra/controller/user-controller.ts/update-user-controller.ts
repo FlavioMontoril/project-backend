@@ -20,7 +20,7 @@ class UpdateUserController {
             const { id } = paramsSchema.parse(req.params)
             const { name, email, department, roleId } = bodySchema.parse(req.body)
 
-            const useCase = MakeUpdateUserFactory.make()
+            const useCase = MakeUpdateUserFactory.build()
             const updatedUser = await useCase.execute(id, { name, email, department, roleId })
             res.status(200).json(updatedUser)
             return

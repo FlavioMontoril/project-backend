@@ -7,7 +7,7 @@ export interface UserData {
     passwordHash: string;
     department: string;
     roleId: string;
-    createdAt: Date;
-    updatedAt: Date | null;
-    tasks: Task[];
+    createdAt?: Date;
+    updatedAt?: Date | null;
+    tasks?: Task[];
 }

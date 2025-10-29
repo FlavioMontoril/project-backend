@@ -28,7 +28,6 @@ export class UpdateTaskUseCase {
         if (payload.reporter != undefined) task.setReporter(payload.reporter)
         if (payload.type) task.setType(payload.type)
         if (payload.status) task.setStatus(payload.status)
-        task.setUpdatedAt(new Date())
 
         const updatedTask = await this.repository.update(task)
         return updatedTask

@@ -1,9 +1,9 @@
-import { SQLiteUserRepository } from "core/repository/databases/sqlite-user-repository.js";
+import { PrismaUserRepository } from "adapters/database/prisma/user/prisma-user-repository.js";
 import { FindUserByEmailUseCase } from "core/use-case/user-use-case/find-user-by-email-use-case.js";
 
-export abstract class MakeFindUserByEmailFactory{
-    public static make(){
-        const repository = new SQLiteUserRepository()
+export class MakeFindUserByEmailFactory{
+    public static build(){
+        const repository = new PrismaUserRepository()
         const useCase = new FindUserByEmailUseCase(repository)
         return useCase
     }

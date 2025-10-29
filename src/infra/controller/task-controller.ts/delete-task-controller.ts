@@ -12,7 +12,7 @@ class DeleteTaskController{
             })
 
             const {id} = paramsSchema.parse(req.params)
-            const useCase = MakeDeleteTaskUseCaseFactory.make()
+            const useCase = MakeDeleteTaskUseCaseFactory.build()
             await useCase.execute(id)
             res.sendStatus(200).json({message: "Task delete"})
         }catch(error){

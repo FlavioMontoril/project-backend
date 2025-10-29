@@ -18,9 +18,9 @@ class CreateUserController {
             });
 
             const { name, email, passwordHash, department, roleId } = bodySchema.parse(req.body)
-            const useCase = MakeCreateUserFactory.make()
+            const useCase = MakeCreateUserFactory.build()
             await useCase.execute({ name, email, passwordHash, department, roleId })
-            res.status(201).json({ message: 'Created User'})
+            res.status(201).json({ message: 'Created User' })
         } catch (error) {
             console.error(error);
             if (error instanceof z.ZodError) {
@@ -35,7 +35,7 @@ class CreateUserController {
                 res.status(409).json({ error: error.message })
                 return
             }
-               if (error instanceof ResourceNotFoundException) {
+            if (error instanceof ResourceNotFoundException) {
                 res.status(404).json({ error: error.message })
                 return
             }

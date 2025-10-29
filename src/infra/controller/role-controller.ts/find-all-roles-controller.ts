@@ -6,7 +6,7 @@ import z from "zod"
 class FindAllRolesController{
     public async handle(_: Request, res: Response){
         try{
-            const useCase = MakeFindAllRolesFactory.make()
+            const useCase = MakeFindAllRolesFactory.build()
             const roles = await useCase.execute()
             const rolesToJSON = roles.map(role=> role.toJSON())
             res.status(200).json(rolesToJSON)

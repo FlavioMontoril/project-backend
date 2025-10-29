@@ -24,7 +24,7 @@ export class PrismaRoleRepository implements RoleRepository{
     }
 
     public async delete(id: string):Promise<void>{
-         await prisma.task.delete({
+         await prisma.role.delete({
             where: {id}
         });
 
@@ -36,7 +36,6 @@ export class PrismaRoleRepository implements RoleRepository{
             where: {id: role.getId().toString()},
             data: rawRole
         });
-
         return RoleMapper.toDomain(rawRole)
     }
 

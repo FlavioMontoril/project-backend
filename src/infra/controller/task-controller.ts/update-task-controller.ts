@@ -1,4 +1,3 @@
-import { Task } from "core/entities/task-entitie.js"
 import { InvalidOperationException } from "core/exceptions/InvalidOperationException.js"
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
 import { MakeUpdateTaskUseCaseFactory } from "core/factory/task-factory/make-update-task-use-case-factory.js"
@@ -25,7 +24,7 @@ class UpdateTaskController {
 
             const { id } = paramsSchema.parse(req.params)
             const body = bodySchema.parse(req.body)
-            const useCase = MakeUpdateTaskUseCaseFactory.make()
+            const useCase = MakeUpdateTaskUseCaseFactory.build()
             const updatedTask = await useCase.execute(
                 id,{
                 summary: body.summary,

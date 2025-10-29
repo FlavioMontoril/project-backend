@@ -23,7 +23,6 @@ export class UpdateUserUseCase {
             .setEmail(payload.email)
             .setDepartment(payload.department)
             .setRoleId(payload.roleId)
-            .setUpdatedAt(new Date())
 
         const updatedUser = await this.userRepository.update(user)
         return updatedUser
