@@ -51,4 +51,19 @@ export class PrismaRoleRepository implements RoleRepository{
         const rawRole: PrismaRole[] = await prisma.role.findMany();
         return rawRole.map(RoleMapper.toDomain)
     }
+
+    public async findAllRoleById(id: string):Promise<Role | null>{
+        const rawRole = await prisma.role.findUnique({
+            where: {id},
+            include: {
+                user: {
+                    include: {
+                        tasks: true
+                    }
+                }
+            }
+        });
+        if(!rawRole) return null
+        return RoleMapper.toDomain(rawRole)
+    }
 }

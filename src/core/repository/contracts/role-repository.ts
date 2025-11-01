@@ -8,4 +8,5 @@ export interface RoleRepository{
     findAll:()=>Promise<Role[]>
     findById:(id:string)=>Promise<Role | null>
     findByOptions:(roleOptions: RoleOptions)=>Promise<Role | null>
+    findAllRoleById:(id: string)=>Promise<Role | null>
 }
