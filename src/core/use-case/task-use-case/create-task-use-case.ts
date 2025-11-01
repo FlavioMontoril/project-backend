@@ -6,7 +6,7 @@ import { TaskStatus, type TaskData } from "core/types/task-types.js";
 export class CreateTaskUseCase{
     constructor(private readonly repository: TaskRepository){}
     public async execute(payload: TaskData){
-        if(!payload.description || !payload.reporter || !payload.status || !payload.summary){
+        if(!payload.description || !payload.reporter || !payload.summary || ! payload.type){
             throw new InvalidPropertiesException()
         }
         const newTask = Task.build({

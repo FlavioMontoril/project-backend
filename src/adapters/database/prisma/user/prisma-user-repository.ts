@@ -3,6 +3,8 @@ import type { UserRepository } from "core/repository/contracts/user-repository.j
 import type { User as PrismaUser } from "../../../../generated/prisma/index.js"
 import { UserMapper } from "./user-mapper.js";
 import { PrismaClient } from "../../../../generated/prisma/index.js"
+import { TaskStatus } from "../../../../generated/prisma/index.js"
+ 
 const prisma = new PrismaClient()
 
 export class PrismaUserRepository implements UserRepository {
@@ -46,5 +48,18 @@ export class PrismaUserRepository implements UserRepository {
         })
 
         return UserMapper.toDomain(updateUser)
+    }
+
+    public async findAllUsersWithHasTasksOpen(): Promise<Array<{user: User; hasTasksOpen: boolean; totalTasks: number}>>{
+        const rawUsers = await prisma.user.findMany({
+            include: {
+                tasks: true,
+            }
+        })
+        return rawUsers.map((user) => ({
+            user: UserMapper.toDomain(user),
+            hasTasksOpen: user?.tasks?.some(task => task.status === TaskStatus.OPEN),
+            totalTasks: user?.tasks?.length ?? 0
+        }));
     }
 }
