@@ -1,5 +1,5 @@
-import type { Request, Response } from "express"
 import z from "zod"
+import { Request, Response } from "express"
 import { MakeUserWithRoleFactory } from "./authenticate-factory.js";
 import { InvalidArgumentsError } from "core/errors/invalid-arguments.js";
 import { ResourceNotFoundError } from "core/errors/resource-not-found.js";

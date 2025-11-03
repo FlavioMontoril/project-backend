@@ -2,7 +2,7 @@ import { PrismaTaskRepository } from "adapters/database/prisma/task/prisma-task-
 import { InvalidOperationException } from "core/exceptions/InvalidOperationException.js"
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
 import { MakeDeleteTaskUseCaseFactory } from "core/factory/task-factory/make-delete-task-use-case-factory.js"
-import type {Request, Response} from "express"
+import {Request, Response} from "express"
 import z from "zod"
 class DeleteTaskController{
     public async handle(req: Request, res: Response){

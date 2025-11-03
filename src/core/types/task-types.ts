@@ -1,4 +1,3 @@
-import type { UserData } from "./user-type.js";
 
 export interface TaskData{
     id?: string,

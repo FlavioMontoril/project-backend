@@ -1,6 +1,6 @@
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
 import { MakeFindAllRolesFactory } from "core/factory/role-factory/make-find-all-roles-factory.js"
-import type { Request, Response } from "express"
+import { Request, Response } from "express"
 import z from "zod"
 
 class FindAllRolesController{

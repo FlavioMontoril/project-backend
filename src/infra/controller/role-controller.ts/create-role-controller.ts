@@ -1,7 +1,7 @@
 import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js";
 import { MakeCreateRoleFactory } from "core/factory/role-factory/make-create-role-factory.js";
 import { RoleOptions } from "core/types/role-types.js";
-import type { Request, Response } from "express";
+import { Request, Response } from "express";
 import z from "zod"
 
 class CreateRoleController{

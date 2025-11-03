@@ -1,9 +1,9 @@
 import { Role } from "core/entities/role-entitie.js";
-import type { RoleRepository } from "core/repository/contracts/role-repository.js";
-import type { Role as PrismaRole } from "generated/prisma/index.js";
+import { RoleRepository } from "core/repository/contracts/role-repository.js";
+import { Role as PrismaRole } from "generated/prisma/index.js";
 import { RoleMapper } from "./role-mapper.js";
 import {PrismaClient} from "../../../../generated/prisma/index.js"
-import type { RoleOptions } from "core/types/role-types.js";
+import { RoleOptions } from "core/types/role-types.js";
 
 const prisma = new PrismaClient()
 

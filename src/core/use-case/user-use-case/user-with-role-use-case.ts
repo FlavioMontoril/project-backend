@@ -1,6 +1,6 @@
-import type { RoleRepository } from "core/repository/contracts/role-repository.js";
-import type { UserRepository } from "core/repository/contracts/user-repository.js";
-import type { RoleData } from "core/types/role-types.js";
+import { RoleRepository } from "core/repository/contracts/role-repository.js";
+import { UserRepository } from "core/repository/contracts/user-repository.js";
+import { RoleData } from "core/types/role-types.js";
 
 export interface UserWithRoleDTO {
     id: string;

@@ -1,6 +1,6 @@
-import type { User } from "core/entities/user-entitie.js";
-import type { UserRepository } from "core/repository/contracts/user-repository.js";
-import type { User as PrismaUser } from "../../../../generated/prisma/index.js"
+import { User } from "core/entities/user-entitie.js";
+import { UserRepository } from "core/repository/contracts/user-repository.js";
+import { User as PrismaUser } from "../../../../generated/prisma/index.js"
 import { UserMapper } from "./user-mapper.js";
 import { PrismaClient } from "../../../../generated/prisma/index.js"
 import { TaskStatus } from "../../../../generated/prisma/index.js"

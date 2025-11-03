@@ -1,6 +1,6 @@
-import type { RoleData, RoleOptions } from "core/types/role-types.js"
+import { RoleData, RoleOptions } from "core/types/role-types.js"
 import { randomUUID } from "crypto"
-import type { User } from "./user-entitie.js"
+import { User } from "./user-entitie.js"
 
 export class Role {
     private readonly id: string

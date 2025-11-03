@@ -1,5 +1,5 @@
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js";
-import type { UserRepository } from "core/repository/contracts/user-repository.js";
+import { UserRepository } from "core/repository/contracts/user-repository.js";
 
 export class DeleteUserUseCase{
     constructor(private readonly repository: UserRepository){}

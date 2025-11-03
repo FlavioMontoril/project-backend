@@ -2,7 +2,7 @@ import { InvalidArgumentsError } from "core/errors/invalid-arguments.js"
 import { ResourceNotFoundError } from "core/errors/resource-not-found.js"
 import { InvalidOperationException } from "core/exceptions/InvalidOperationException.js"
 import { MakeUpdatePasswordUserFactory } from "core/factory/user-factory/make-update-password-user-factory.js"
-import type { Request, Response } from "express"
+import { Request, Response } from "express"
 import z from "zod"
 
 class UpdatePasswordUserController{

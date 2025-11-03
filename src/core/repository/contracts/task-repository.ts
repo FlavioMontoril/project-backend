@@ -1,6 +1,5 @@
-import type { promises } from "dns"
-import type { Task } from "../../entities/task-entitie.js"
-import type { TaskType } from "../../types/task-types.js"
+import { Task } from "../../entities/task-entitie.js"
+import { TaskType } from "../../types/task-types.js"
 
 export interface TaskRepository {
     create: (task: Task) => Promise<void>

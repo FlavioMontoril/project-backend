@@ -1,5 +1,5 @@
 import { ResourceNotFoundError } from "core/errors/resource-not-found.js";
-import type { UserRepository } from "core/repository/contracts/user-repository.js";
+import { UserRepository } from "core/repository/contracts/user-repository.js";
 import { hash, compare } from "bcryptjs";
 import { InvalidArgumentsError } from "core/errors/invalid-arguments.js";
 import { InvalidOperationException } from "core/exceptions/InvalidOperationException.js";

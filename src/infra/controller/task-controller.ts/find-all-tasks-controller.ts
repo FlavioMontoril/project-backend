@@ -1,6 +1,6 @@
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
 import { MakeFindAllTasksUseCaseFactory } from "core/factory/task-factory/make-find-all-tasks-use-case-factory.js"
-import type { Request, Response } from "express"
+import { Request, Response } from "express"
 import z from "zod"
 class FindAllTasksController {
     public async handle(_: Request, res: Response) {

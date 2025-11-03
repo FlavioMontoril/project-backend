@@ -1,7 +1,7 @@
 import { Role } from "core/entities/role-entitie.js";
-import type { Role as PrismaRole } from "../../../../generated/prisma/index.js"
-import type { User as PrismaUser } from "../../../../generated/prisma/index.js"
-import type { RoleOptions } from "core/types/role-types.js";
+import { Role as PrismaRole } from "../../../../generated/prisma/index.js"
+import { User as PrismaUser } from "../../../../generated/prisma/index.js"
+import { RoleOptions } from "core/types/role-types.js";
 import { UserMapper } from "../user/user-mapper.js";
 
 export class RoleMapper {

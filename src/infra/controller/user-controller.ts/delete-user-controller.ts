@@ -1,6 +1,6 @@
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
 import { MakeDeleteUser } from "core/factory/user-factory/make-delete-user-factory.js"
-import type { Request, Response } from "express"
+import { Request, Response } from "express"
 import z from "zod"
 
 class DeleteUserController {

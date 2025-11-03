@@ -2,7 +2,7 @@ import { ResourceAlreadyExistsError } from "core/errors/resource-already-exists.
 import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js"
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js";
 import { MakeCreateUserFactory } from "core/factory/user-factory/make-create-user-factory.js";
-import type { Request, Response } from "express"
+import { Request, Response } from "express"
 import z from "zod"
 
 class CreateUserController {

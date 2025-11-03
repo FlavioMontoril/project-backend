@@ -1,6 +1,6 @@
-import type { UserData } from "core/types/user-type.js";
+import { UserData } from "core/types/user-type.js";
 import { randomUUID } from "crypto";
-import type { Task } from "./task-entitie.js";
+import { Task } from "./task-entitie.js";
 
 export class User {
     private readonly id: string;

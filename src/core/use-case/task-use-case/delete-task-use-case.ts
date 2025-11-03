@@ -1,6 +1,6 @@
 import { InvalidOperationException } from "core/exceptions/InvalidOperationException.js";
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js";
-import type { TaskRepository } from "core/repository/contracts/task-repository.js";
+import { TaskRepository } from "core/repository/contracts/task-repository.js";
 import { TaskStatus } from "core/types/task-types.js";
 
 export class DeleteTaskUseCase{
