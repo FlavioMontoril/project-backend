@@ -1,7 +1,7 @@
 import { Role } from "core/entities/role-entitie.js";
 import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js";
-import type { RoleRepository } from "core/repository/contracts/role-repository.js";
-import type { RoleData, RoleOptions } from "core/types/role-types.js";
+import { RoleRepository } from "core/repository/contracts/role-repository.js";
+import { RoleData, RoleOptions } from "core/types/role-types.js";
 import { randomUUID } from "crypto";
 
 export class CreateRoleUseCase {

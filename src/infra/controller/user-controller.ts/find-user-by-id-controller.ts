@@ -1,6 +1,6 @@
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
 import { MakeFindUserById } from "core/factory/user-factory/make-find-user-by-id-factory.js"
-import type { Request, Response } from "express"
+import { Request, Response } from "express"
 import z from "zod"
 
 class FindUserByIdController {

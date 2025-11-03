@@ -1,5 +1,5 @@
 import { ResourceNotFoundError } from "core/errors/resource-not-found.js";
-import type { UserRepository } from "core/repository/contracts/user-repository.js";
+import { UserRepository } from "core/repository/contracts/user-repository.js";
 
 export class FindUserByEmailUseCase{
     constructor(private readonly repository: UserRepository){}

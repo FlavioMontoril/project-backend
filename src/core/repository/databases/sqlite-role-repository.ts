@@ -1,6 +1,6 @@
 import { openDb } from "configDB.js";
 import { Role } from "core/entities/role-entitie.js";
-import type { RoleOptions } from "core/types/role-types.js";
+import { RoleOptions } from "core/types/role-types.js";
 
 export class SQLiteRoleRepository {
     public async create(role: Role): Promise<void> {

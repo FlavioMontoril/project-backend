@@ -1,7 +1,7 @@
 import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js"
 import { MakeCreateTaskUseCaseFactory } from "core/factory/task-factory/make-create-task-use-case-factory.js";
 import { TaskStatus, TaskType } from "core/types/task-types.js"
-import type { Request, Response } from "express"
+import { Request, Response } from "express"
 import z from "zod"
 class CreateTaskController{
     public async handle(req: Request, res: Response){

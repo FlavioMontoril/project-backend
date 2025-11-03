@@ -1,7 +1,7 @@
 import { InvalidArgumentsError } from "core/errors/invalid-arguments.js";
 import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js";
-import type { RoleRepository } from "core/repository/contracts/role-repository.js";
-import type { UserRepository } from "core/repository/contracts/user-repository.js";
+import { RoleRepository } from "core/repository/contracts/role-repository.js";
+import { UserRepository } from "core/repository/contracts/user-repository.js";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { InvalidOperationException } from "core/exceptions/InvalidOperationException.js";

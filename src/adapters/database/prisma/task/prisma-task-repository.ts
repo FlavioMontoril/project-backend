@@ -1,9 +1,9 @@
-import type { Task } from "core/entities/task-entitie.js";
-import type { TaskRepository } from "core/repository/contracts/task-repository.js";
-import type { Task as PrismaTask } from "../../../../generated/prisma/index.js"
+import { Task } from "core/entities/task-entitie.js";
+import { TaskRepository } from "core/repository/contracts/task-repository.js";
+import { Task as PrismaTask } from "../../../../generated/prisma/index.js"
 import { PrismaClient } from "../../../../generated/prisma/index.js"
 import { TaskMapper } from "./task-mapper.js";
-import type { TaskType } from "core/types/task-types.js";
+import { TaskType } from "core/types/task-types.js";
 
 const prisma = new PrismaClient()
 

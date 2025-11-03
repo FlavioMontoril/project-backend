@@ -1,6 +1,6 @@
 import { openDb } from "configDB.js";
 import { Task } from "core/entities/task-entitie.js";
-import type { TaskType } from "core/types/task-types.js";
+import { TaskType } from "core/types/task-types.js";
 
 export class SQLiteTaskRepository {
     public async create(task: Task): Promise<void> {

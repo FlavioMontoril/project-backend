@@ -1,7 +1,7 @@
 import { ResourceNotFoundError } from "core/errors/resource-not-found.js";
 import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js";
 import { FindAllRoleByIdFactory } from "core/factory/role-factory/find-all-role-by-id-factory.js";
-import type { Request, Response } from "express"
+import { Request, Response } from "express"
 import z from "zod"
 
 class FindAllRoleByIdController {

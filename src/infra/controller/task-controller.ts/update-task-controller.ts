@@ -2,7 +2,7 @@ import { InvalidOperationException } from "core/exceptions/InvalidOperationExcep
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
 import { MakeUpdateTaskUseCaseFactory } from "core/factory/task-factory/make-update-task-use-case-factory.js"
 import { TaskStatus, TaskType } from "core/types/task-types.js"
-import type { Request, Response } from "express"
+import { Request, Response } from "express"
 import z from "zod"
 
 class UpdateTaskController {

@@ -1,6 +1,5 @@
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js";
-import type { RoleRepository } from "core/repository/contracts/role-repository.js";
-import type { TaskRepository } from "core/repository/contracts/task-repository.js";
+import { RoleRepository } from "core/repository/contracts/role-repository.js";
 
 export class FindAllRoleUseCase {
     constructor(private readonly repository: RoleRepository) { }

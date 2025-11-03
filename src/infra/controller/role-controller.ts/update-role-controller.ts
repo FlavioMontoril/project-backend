@@ -1,8 +1,7 @@
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeDeleteRoleFactory } from "core/factory/role-factory/make-delete-role-factory.js"
 import { MakeUpdateFactory } from "core/factory/role-factory/update-role-factory.js"
 import { RoleOptions } from "core/types/role-types.js"
-import type { Request, Response } from "express"
+import { Request, Response } from "express"
 import z from "zod"
 
 class UpdateRoleController {

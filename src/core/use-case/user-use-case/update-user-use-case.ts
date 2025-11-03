@@ -1,6 +1,5 @@
 import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js";
-import type { UserRepository } from "core/repository/contracts/user-repository.js";
-import type { UserData } from "core/types/user-type.js";
+import { UserRepository } from "core/repository/contracts/user-repository.js";
 
 interface UserDataProps{
     name: string;
