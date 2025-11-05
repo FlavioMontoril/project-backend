@@ -1,6 +1,6 @@
 import { User } from "core/entities/user-entitie.js";
-import { User as PrismaUser } from "../../../../generated/prisma/index.js"
-import { Task as TaskPrisma } from "../../../../generated/prisma/index.js"
+import { User as PrismaUser } from "@prisma/client"
+import { Task as TaskPrisma } from "@prisma/client"
 import { TaskMapper } from "../task/task-mapper.js";
 
 
@@ -16,7 +16,6 @@ export class UserMapper {
             createdAt: raw.createdAt,
             updatedAt: raw.updatedAt ?? null,
             tasks: raw.tasks?.map(taskRaw => TaskMapper.toDomain(taskRaw)) ?? []
-
         })
     }
 
