@@ -2,11 +2,14 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "*": [
-        "*"
-      ]
+      "@generated/*": ["src/generated/*"],
+      "@core/*": ["src/core/*"],
+      "@adapters/*": ["src/adapters/*"],
+      "@application/*": ["src/application/*"],
+      "@infra/*": ["src/infra/*"],
+      "@prisma/*": ["prisma/*"]
     },
     "module": "nodenext",
     "target": "ES2023",

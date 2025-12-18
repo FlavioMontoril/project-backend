@@ -1,9 +1,9 @@
-import { User } from "core/entities/user-entitie.js";
-import { UserRepository } from "core/repository/contracts/user-repository.js";
-import { User as PrismaUser } from "@prisma/client"
+import { User } from "@core/entities/user-entitie.js";
+import { UserRepository } from "@core/repository/contracts/user-repository.js";
+import { User as PrismaUser } from "@prisma/generated/index.js"
 import { UserMapper } from "./user-mapper.js";
-import { PrismaClient } from "@prisma/client"
-import { TaskStatus } from "@prisma/client"
+import { PrismaClient } from "@prisma/generated/index.js"
+import { TaskStatus } from "@prisma/generated/index.js"
  
 const prisma = new PrismaClient()
 
