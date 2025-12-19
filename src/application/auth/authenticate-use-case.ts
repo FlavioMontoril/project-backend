@@ -1,10 +1,10 @@
-import { InvalidArgumentsError } from "core/errors/invalid-arguments.js";
-import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js";
-import { RoleRepository } from "core/repository/contracts/role-repository.js";
-import { UserRepository } from "core/repository/contracts/user-repository.js";
+import { InvalidArgumentsError } from "@/core/errors/invalid-arguments.js";
+import { InvalidPropertiesException } from "@/core/exceptions/InvalidPropertiesException.js";
+import { RoleRepository } from "@/core/repository/contracts/role-repository.js";
+import { UserRepository } from "@/core/repository/contracts/user-repository.js";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { InvalidOperationException } from "core/exceptions/InvalidOperationException.js";
+import { InvalidOperationException } from "@/core/exceptions/InvalidOperationException.js";
 import dotenv from "dotenv"
 
 dotenv.config()

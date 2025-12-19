@@ -1,5 +1,5 @@
-import { PrismaTaskRepository } from "adapters/database/prisma/task/prisma-task-repository.js";
-import { FindTaskByIdUseCase } from "core/use-case/task-use-case/find-task-by-id-use-case.js";
+import { PrismaTaskRepository } from "@/adapters/database/prisma/task/prisma-task-repository.js";
+import { FindTaskByIdUseCase } from "@/core/use-case/task-use-case/find-task-by-id-use-case.js";
 
 export class MakeFindByIdTaskFactory{
     public static build(){

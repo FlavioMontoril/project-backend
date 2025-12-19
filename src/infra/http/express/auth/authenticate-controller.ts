@@ -1,12 +1,14 @@
 import z from "zod"
 import { Request, Response } from "express"
 import { MakeUserWithRoleFactory } from "./authenticate-factory.js";
-import { InvalidArgumentsError } from "core/errors/invalid-arguments.js";
-import { ResourceNotFoundError } from "core/errors/resource-not-found.js";
+import { InvalidArgumentsError } from "@/core/errors/invalid-arguments.js";
+import { ResourceNotFoundError } from "@/core/errors/resource-not-found.js";
 
 class AuthenticateController{
 
     public async handle(req: Request, res: Response){
+
+        console.log("Auth Controller")
         try{
             const bodySchema = z.object({
                 email: z.string(),

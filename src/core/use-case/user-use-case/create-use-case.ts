@@ -1,11 +1,11 @@
-import { User } from "core/entities/user-entitie.js";
-import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js";
-import { UserRepository } from "core/repository/contracts/user-repository.js";
+import { User } from "@/core/entities/user-entitie.js";
+import { InvalidPropertiesException } from "@/core/exceptions/InvalidPropertiesException.js";
+import { UserRepository } from "@/core/repository/contracts/user-repository.js";
 import { hash } from "bcryptjs"
-import { ResourceAlreadyExistsError } from "core/errors/resource-already-exists.js";
-import { RoleRepository } from "core/repository/contracts/role-repository.js";
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js";
-import { UserData } from "core/types/user-type.js";
+import { ResourceAlreadyExistsError } from "@/core/errors/resource-already-exists.js";
+import { RoleRepository } from "@/core/repository/contracts/role-repository.js";
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js";
+import { UserData } from "@core/types/user-type.js";
 
 export class CreateUserUseCase {
     constructor(

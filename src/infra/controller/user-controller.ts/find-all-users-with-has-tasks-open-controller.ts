@@ -1,5 +1,5 @@
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeFindAllUsersWithHasTasksOpenFactory } from "core/factory/user-factory/make-find-all-users-withHas-tasks-pendings-factory.js"
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js"
+import { MakeFindAllUsersWithHasTasksOpenFactory } from "@/core/factory/user-factory/make-find-all-users-withHas-tasks-pendings-factory.js"
 import { Request, Response } from "express"
 import z from "zod"
 class FindAllUsersWithHasTasksOpenController {

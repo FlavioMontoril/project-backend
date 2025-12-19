@@ -1,6 +1,6 @@
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js";
-import { RoleRepository } from "core/repository/contracts/role-repository.js";
-import { RoleOptions } from "core/types/role-types.js";
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js";
+import { RoleRepository } from "@/core/repository/contracts/role-repository.js";
+import { RoleOptions } from "@/core/types/role-types.js";
 
 export class FindByRoleTypeUseCase{
     constructor(private readonly repository: RoleRepository){}

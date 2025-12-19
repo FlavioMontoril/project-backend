@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto"
-import { TaskStatus, type TaskData, type TaskType } from "../types/task-types.js"
+import { TaskStatus, type TaskData, type TaskType } from "@/core/types/task-types.js"
 
 export class Task {
     private readonly id: string

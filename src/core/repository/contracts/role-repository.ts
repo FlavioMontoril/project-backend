@@ -1,5 +1,5 @@
-import { Role } from "@core/entities/role-entitie.js";
-import { RoleOptions } from "@core/types/role-types.js";
+import { Role } from "@/core/entities/role-entitie.js";
+import { RoleOptions } from "@/core/types/role-types.js";
 
 export interface RoleRepository{
     create:(role: Role)=>Promise<void>

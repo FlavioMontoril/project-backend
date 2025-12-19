@@ -1,11 +1,10 @@
-import { User } from "@core/entities/user-entitie.js";
-import { UserRepository } from "@core/repository/contracts/user-repository.js";
-import { User as PrismaUser } from "@prisma/generated/index.js"
+import { User } from "@/core/entities/user-entitie.js";
+import { UserRepository } from "@/core/repository/contracts/user-repository.js";
+import { User as PrismaUser } from "@/generated/prisma/index.js"
 import { UserMapper } from "./user-mapper.js";
-import { PrismaClient } from "@prisma/generated/index.js"
-import { TaskStatus } from "@prisma/generated/index.js"
- 
-const prisma = new PrismaClient()
+import { TaskStatus } from "@/generated/prisma/index.js"
+ import { prisma } from "@/infra/database/client.js";
+
 
 export class PrismaUserRepository implements UserRepository {
     public async create(user: User): Promise<void> {

@@ -1,4 +1,4 @@
-import { User } from "@core/entities/user-entitie.js";
+import { User } from "@/core/entities/user-entitie.js";
 
 export interface UserRepository {
     create: (user: User) => Promise<void>

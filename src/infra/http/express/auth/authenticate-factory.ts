@@ -1,6 +1,6 @@
-import { PrismaRoleRepository } from "adapters/database/prisma/role/prisma-role-repository.js";
-import { PrismaUserRepository } from "adapters/database/prisma/user/prisma-user-repository.js";
-import { AuthenticateUseCase } from "application/auth/authenticate-use-case.js";
+import { PrismaRoleRepository } from "@/adapters/database/prisma/role/prisma-role-repository.js";
+import { PrismaUserRepository } from "@/adapters/database/prisma/user/prisma-user-repository.js";
+import { AuthenticateUseCase } from "@/application/auth/authenticate-use-case.js";
 
 export abstract class MakeUserWithRoleFactory{
     public static make(){

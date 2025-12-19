@@ -1,4 +1,4 @@
-import { UserData } from "core/types/user-type.js";
+import { UserData } from "@/core/types/user-type.js";
 import { randomUUID } from "crypto";
 import { Task } from "./task-entitie.js";
 

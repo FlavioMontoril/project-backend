@@ -1,5 +1,5 @@
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeDeleteRoleFactory } from "core/factory/role-factory/make-delete-role-factory.js"
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js"
+import { MakeDeleteRoleFactory } from "@/core/factory/role-factory/make-delete-role-factory.js"
 import { Request, Response } from "express"
 import z from "zod"
 

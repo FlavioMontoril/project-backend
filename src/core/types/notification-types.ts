@@ -1,12 +1,12 @@
 export interface NotificationProps {
-  id: string,
+  id?: string,
   userId: string
   title: string
   message: string
   type: NotificationType
   entityId?: string
-  createdAt: Date
-  read: boolean
+  createdAt?: Date
+  read?: boolean
 }
 
 export enum NotificationType {

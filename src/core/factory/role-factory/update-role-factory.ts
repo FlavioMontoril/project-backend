@@ -1,6 +1,5 @@
-import { PrismaRoleRepository } from "adapters/database/prisma/role/prisma-role-repository.js";
-import { SQLiteRoleRepository } from "core/repository/databases/sqlite-role-repository.js";
-import { UpdateRoleUseCase } from "core/use-case/role-use-case/update-role-use-case.js";
+import { PrismaRoleRepository } from "@/adapters/database/prisma/role/prisma-role-repository.js";
+import { UpdateRoleUseCase } from "@/core/use-case/role-use-case/update-role-use-case.js";
 
 export class MakeUpdateFactory{
     public static build(){

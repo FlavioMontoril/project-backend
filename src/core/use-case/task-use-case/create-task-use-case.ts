@@ -1,7 +1,7 @@
-import { Task } from "core/entities/task-entitie.js";
-import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js";
-import { TaskRepository } from "core/repository/contracts/task-repository.js";
-import { TaskStatus, type TaskData } from "core/types/task-types.js";
+import { Task } from "@/core/entities/task-entitie.js";
+import { InvalidPropertiesException } from "@/core/exceptions/InvalidPropertiesException.js";
+import { TaskRepository } from "@/core/repository/contracts/task-repository.js";
+import { TaskStatus, type TaskData } from "@/core/types/task-types.js";
 
 export class CreateTaskUseCase{
     constructor(private readonly repository: TaskRepository){}

@@ -1,5 +1,5 @@
-import { PrismaUserRepository } from "adapters/database/prisma/user/prisma-user-repository.js";
-import { DeleteUserUseCase } from "core/use-case/user-use-case/delete-use-use-case.js";
+import { PrismaUserRepository } from "@/adapters/database/prisma/user/prisma-user-repository.js";
+import { DeleteUserUseCase } from "@/core/use-case/user-use-case/delete-use-use-case.js";
 
 export class MakeDeleteUser{
     public static build(){

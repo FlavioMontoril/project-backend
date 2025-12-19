@@ -1,5 +1,5 @@
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeFindByIdRoleFactory } from "core/factory/role-factory/make-find-by-id-role-factory.js"
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js"
+import { MakeFindByIdRoleFactory } from "@/core/factory/role-factory/make-find-by-id-role-factory.js"
 import { Request, Response } from "express"
 import z from "zod"
 
