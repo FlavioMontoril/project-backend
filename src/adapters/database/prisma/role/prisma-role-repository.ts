@@ -1,11 +1,11 @@
-import { Role } from "@core/entities/role-entitie.js";
-import { RoleRepository } from "@core/repository/contracts/role-repository.js";
-import { Role as PrismaRole } from "../../../../../prisma/generated/index.js";
+import { Role } from "@/core/entities/role-entitie.js";
+import { RoleRepository } from "@/core/repository/contracts/role-repository.js";
+import {  Role as PrismaRole } from "@/generated/prisma/index.js";
 import { RoleMapper } from "./role-mapper.js";
-import {PrismaClient} from "@prisma/generated/index.js"
-import { RoleOptions } from "@core/types/role-types.js";
+import { RoleOptions } from "@/core/types/role-types.js";
+import { prisma } from "@/infra/database/client.js";
 
-const prisma = new PrismaClient()
+
 
 export class PrismaRoleRepository implements RoleRepository{
     public async create(role: Role):Promise<void>{

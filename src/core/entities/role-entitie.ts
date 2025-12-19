@@ -1,4 +1,4 @@
-import { RoleData, RoleOptions } from "core/types/role-types.js"
+import { RoleData, RoleOptions } from "@/core/types/role-types.js"
 import { randomUUID } from "crypto"
 import { User } from "./user-entitie.js"
 

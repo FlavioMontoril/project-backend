@@ -1,7 +1,7 @@
-import { Role } from "core/entities/role-entitie.js";
-import { ResourceNotFoundError } from "core/errors/resource-not-found.js";
-import { InvalidPropertiesException } from "core/exceptions/InvalidPropertiesException.js";
-import { RoleRepository } from "core/repository/contracts/role-repository.js";
+import { Role } from "@/core/entities/role-entitie.js";
+import { ResourceNotFoundError } from "@/core/errors/resource-not-found.js";
+import { InvalidPropertiesException } from "@/core/exceptions/InvalidPropertiesException.js";
+import { RoleRepository } from "@/core/repository/contracts/role-repository.js";
 
 export class findAllRoleByIdUseCase{
     constructor(private readonly roleRepository: RoleRepository){}

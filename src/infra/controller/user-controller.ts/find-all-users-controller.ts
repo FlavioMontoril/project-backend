@@ -1,5 +1,5 @@
-import { ResourceNotFoundError } from "core/errors/resource-not-found.js"
-import { MakeFindAllUsersFactory } from "core/factory/user-factory/make-find-all-users-factory.js"
+import { ResourceNotFoundError } from "@/core/errors/resource-not-found.js"
+import { MakeFindAllUsersFactory } from "@/core/factory/user-factory/make-find-all-users-factory.js"
 import { Request, Response } from "express"
 import z from "zod"
 

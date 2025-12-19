@@ -1,7 +1,7 @@
-import { User } from "@core/entities/user-entitie.js";
-import { User as PrismaUser } from "@prisma/generated/index.js"
-import { Task as TaskPrisma } from "@prisma/generated/index.js"
-import { TaskMapper } from "../task/task-mapper.js";
+import { User } from "@/core/entities/user-entitie.js";
+import { User as PrismaUser } from "@/generated/prisma/index.js"
+import { Task as TaskPrisma } from "@/generated/prisma/index.js"
+import { TaskMapper } from "@/adapters/database/prisma/task/task-mapper.js";
 
 
 export class UserMapper {

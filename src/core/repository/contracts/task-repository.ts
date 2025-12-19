@@ -1,5 +1,5 @@
-import { Task } from "@core/entities/task-entitie.js"
-import { TaskType } from "@core/types/task-types.js"
+import { Task } from "@/core/entities/task-entitie.js"
+import { TaskType } from "@/core/types/task-types.js"
 
 export interface TaskRepository {
     create: (task: Task) => Promise<void>

@@ -1,8 +1,8 @@
-import { Role } from "@core/entities/role-entitie.js";
-import { Role as PrismaRole } from "@prisma/generated/index.js"
-import { User as PrismaUser } from "@prisma/generated/index.js"
-import { RoleOptions } from "@core/types/role-types.js";
-import { UserMapper } from "@adapters/database/prisma/user/user-mapper.js";
+import { Role } from "@/core/entities/role-entitie.js";
+import { Role as PrismaRole } from "@/generated/prisma/index.js"
+import { User as PrismaUser } from "@/generated/prisma/index.js"
+import { RoleOptions } from "@/core/types/role-types.js";
+import { UserMapper } from "@/adapters/database/prisma/user/user-mapper.js";
 
 export class RoleMapper {
     public static toDomain(raw: PrismaRole & { user?: PrismaUser[] }): Role {

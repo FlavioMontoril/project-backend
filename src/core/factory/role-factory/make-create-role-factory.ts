@@ -1,5 +1,5 @@
-import { PrismaRoleRepository } from "adapters/database/prisma/role/prisma-role-repository.js";
-import { CreateRoleUseCase } from "core/use-case/role-use-case/create-role-use-case.js";
+import { PrismaRoleRepository } from "@/adapters/database/prisma/role/prisma-role-repository.js";
+import { CreateRoleUseCase } from "@/core/use-case/role-use-case/create-role-use-case.js";
 
 export class MakeCreateRoleFactory{
     public static build(){

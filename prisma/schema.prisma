@@ -6,11 +6,12 @@
 
 generator client {
   provider = "prisma-client-js"
-  output = "src/generated"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model Task {
@@ -63,16 +64,42 @@ enum RoleOptions {
 }
 
 model User {
-  id           String    @id @default(uuid())
-  name         String    @db.VarChar(50)
-  email        String    @unique
-  passwordHash String    @map("password_hash")
-  department   String    @db.VarChar(50)
-  roleId       String
-  role         Role      @relation(fields: [roleId], references: [id])
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime? @map("updated_at")
-  tasks        Task[]
+  id            String         @id @default(uuid())
+  name          String         @db.VarChar(50)
+  email         String         @unique
+  passwordHash  String         @map("password_hash")
+  department    String         @db.VarChar(50)
+  roleId        String
+  role          Role           @relation(fields: [roleId], references: [id])
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime?      @map("updated_at")
+  tasks         Task[]
+  notifications Notification[]
 
   @@map("users")
 }
+
+model Notification {
+  id        String           @id @default(uuid())
+  userId    String           @map("user_id")
+  title     String
+  message   String
+  type      NotificationType
+  read      Boolean          @default(false)
+  entityId  String?          @map("entity_id")
+  createdAt DateTime         @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("notification")
+}
+
+enum NotificationType {
+  TASK_READ
+  TASK_UPDATED
+  TASK_CREATED
+  TASK_DELETED
+  COMMENT_CREATED
+}
+

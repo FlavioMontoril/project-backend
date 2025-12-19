@@ -1,4 +1,4 @@
-import { Task } from "core/entities/task-entitie.js";
+import { Task } from "@/core/entities/task-entitie.js";
 
 export interface UserData {
     id?: string;

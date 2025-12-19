@@ -1,5 +1,5 @@
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeFindByIdTaskFactory } from "core/factory/task-factory/make-find-by-id-use-case-factory.js"
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js"
+import { MakeFindByIdTaskFactory } from "@/core/factory/task-factory/make-find-by-id-use-case-factory.js"
 import { Request, Response } from "express"
 import z from "zod"
 

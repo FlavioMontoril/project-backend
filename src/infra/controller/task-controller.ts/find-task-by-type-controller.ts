@@ -1,6 +1,6 @@
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeFindByTypeTaskUsCase } from "core/factory/task-factory/make-find-by-type-task-use-case-factory.js"
-import { TaskType } from "core/types/task-types.js"
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js"
+import { MakeFindByTypeTaskUsCase } from "@/core/factory/task-factory/make-find-by-type-task-use-case-factory.js"
+import { TaskType } from "@/core/types/task-types.js"
 import { Request, Response } from "express"
 import z from "zod"
 

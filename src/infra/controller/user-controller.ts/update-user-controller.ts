@@ -1,6 +1,6 @@
-import { ResourceAlreadyExistsError } from "core/errors/resource-already-exists.js"
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeUpdateUserFactory } from "core/factory/user-factory/make-update-user-factory.js"
+import { ResourceAlreadyExistsError } from "@/core/errors/resource-already-exists.js"
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js"
+import { MakeUpdateUserFactory } from "@/core/factory/user-factory/make-update-user-factory.js"
 import { Request, Response } from "express"
 import z, { email } from "zod"
 

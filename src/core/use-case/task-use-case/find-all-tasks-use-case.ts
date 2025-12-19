@@ -1,5 +1,5 @@
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js";
-import { TaskRepository } from "core/repository/contracts/task-repository.js";
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js";
+import { TaskRepository } from "@/core/repository/contracts/task-repository.js";
 
 export class FindAllTasksUseCase{
     constructor(private readonly repository: TaskRepository){}

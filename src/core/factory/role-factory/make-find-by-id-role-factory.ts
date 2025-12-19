@@ -1,5 +1,5 @@
-import { PrismaRoleRepository } from "adapters/database/prisma/role/prisma-role-repository.js";
-import { FindByIdRoleUseCase } from "core/use-case/role-use-case/find-by-id-role-use-case.js";
+import { PrismaRoleRepository } from "@/adapters/database/prisma/role/prisma-role-repository.js";
+import { FindByIdRoleUseCase } from "@/core/use-case/role-use-case/find-by-id-role-use-case.js";
 
 export class MakeFindByIdRoleFactory {
     public static build() {

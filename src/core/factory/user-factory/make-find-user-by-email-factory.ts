@@ -1,5 +1,5 @@
-import { PrismaUserRepository } from "adapters/database/prisma/user/prisma-user-repository.js";
-import { FindUserByEmailUseCase } from "core/use-case/user-use-case/find-user-by-email-use-case.js";
+import { PrismaUserRepository } from "@/adapters/database/prisma/user/prisma-user-repository.js";
+import { FindUserByEmailUseCase } from "@/core/use-case/user-use-case/find-user-by-email-use-case.js";
 
 export class MakeFindUserByEmailFactory{
     public static build(){

@@ -1,5 +1,5 @@
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeDeleteUser } from "core/factory/user-factory/make-delete-user-factory.js"
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js"
+import { MakeDeleteUser } from "@/core/factory/user-factory/make-delete-user-factory.js"
 import { Request, Response } from "express"
 import z from "zod"
 

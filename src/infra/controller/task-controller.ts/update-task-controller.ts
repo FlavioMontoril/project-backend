@@ -1,7 +1,7 @@
-import { InvalidOperationException } from "core/exceptions/InvalidOperationException.js"
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeUpdateTaskUseCaseFactory } from "core/factory/task-factory/make-update-task-use-case-factory.js"
-import { TaskStatus, TaskType } from "core/types/task-types.js"
+import { InvalidOperationException } from "@/core/exceptions/InvalidOperationException.js"
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js"
+import { MakeUpdateTaskUseCaseFactory } from "@/core/factory/task-factory/make-update-task-use-case-factory.js"
+import { TaskStatus, TaskType } from "@/core/types/task-types.js"
 import { Request, Response } from "express"
 import z from "zod"
 

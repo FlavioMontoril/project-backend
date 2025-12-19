@@ -1,6 +1,6 @@
-import { ResourceNotFoundException } from "core/exceptions/ResourceNotFoundException.js"
-import { MakeUpdateFactory } from "core/factory/role-factory/update-role-factory.js"
-import { RoleOptions } from "core/types/role-types.js"
+import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js"
+import { MakeUpdateFactory } from "@/core/factory/role-factory/update-role-factory.js"
+import { RoleOptions } from "@/core/types/role-types.js"
 import { Request, Response } from "express"
 import z from "zod"
 
