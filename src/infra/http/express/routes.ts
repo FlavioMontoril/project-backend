@@ -7,7 +7,7 @@ import { router as authRoutes } from "@/infra/http/express/auth/_index.js";
 export const router = Router()
 
 router
+.use('/v1/auth', authRoutes)
 .use('/v1/tasks', taskRoutes)
 .use('/v1/roles', roleRoutes)
 .use('/v1/users', userRoutes)
-.use('/v1/auth', authRoutes)
