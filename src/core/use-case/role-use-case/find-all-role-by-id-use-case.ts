@@ -1,6 +1,6 @@
 import { Role } from "@/core/entities/role-entitie.js";
-import { ResourceNotFoundError } from "@/core/errors/resource-not-found.js";
-import { InvalidPropertiesException } from "@/core/exceptions/InvalidPropertiesException.js";
+import { ResourceNotFoundException } from "@/core/exceptions/resource/ResourceNotFoundException.js";
+import { InvalidPropertiesException } from "@/core/exceptions/validation/InvalidPropertiesException.js";
 import { RoleRepository } from "@/core/repository/contracts/role-repository.js";
 
 export class findAllRoleByIdUseCase{
@@ -11,7 +11,7 @@ export class findAllRoleByIdUseCase{
         }
         const allRole = await this.roleRepository.findAllRoleById(id)
         if(!allRole){
-            throw new ResourceNotFoundError()
+            throw new ResourceNotFoundException()
         }
         return allRole
     }

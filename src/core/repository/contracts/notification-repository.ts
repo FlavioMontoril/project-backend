@@ -1,8 +1,7 @@
-import { Notification } from "@/core/entities/notification-entity.js"
+import { Notification } from "@/core/entities/notification-entitie.js"
 
 export interface NotificationRepository {
-  create(notification: Notification): Promise<Notification>
-  findByUserId(userId: string): Promise<Notification[]>
-  markAsRead(notificationId: string): Promise<void>
-  markAllAsRead(userId: string): Promise<void>
+    create(notification: Notification): Promise<void>;
+    findAll(): Promise<Notification[]>;
+    findById(id: string): Promise<Notification | null>
 }

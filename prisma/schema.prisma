@@ -18,8 +18,6 @@ model Task {
   id          String     @id @default(uuid())
   summary     String     @db.VarChar(40)
   description String     @db.VarChar(100)
-  assignee    String?    @db.VarChar(50)
-  reporter    String     @db.VarChar(100)
   type        TaskType
   status      TaskStatus
   createdAt   DateTime?  @map("created_at")
@@ -64,19 +62,43 @@ enum RoleOptions {
 }
 
 model User {
-  id            String         @id @default(uuid())
-  name          String         @db.VarChar(50)
-  email         String         @unique
-  passwordHash  String         @map("password_hash")
-  department    String         @db.VarChar(50)
-  roleId        String
-  role          Role           @relation(fields: [roleId], references: [id])
-  createdAt     DateTime       @default(now()) @map("created_at")
-  updatedAt     DateTime?      @map("updated_at")
-  tasks         Task[]
-  
+  id                     String                  @id @default(uuid())
+  name                   String                  @db.VarChar(50)
+  email                  String                  @unique
+  passwordHash           String                  @map("password_hash")
+  department             String                  @db.VarChar(50)
+  roleId                 String
+  role                   Role                    @relation(fields: [roleId], references: [id])
+  createdAt              DateTime                @default(now()) @map("created_at")
+  updatedAt              DateTime?               @map("updated_at")
+  tasks                  Task[]
+  notifications          Notification[]
+  notificationRecipients NotificationRecipient[]
+
   @@map("users")
 }
 
+model Notification {
+  id                     String                  @id @default(uuid())
+  content                String                  @db.VarChar(100)
+  triggeredId            String                  @map("triggered_id")
+  user                   User                    @relation(fields: [triggeredId], references: [id])
+  entityType             String                  @db.VarChar(10)
+  createdAt              DateTime
+  notificationRecipients NotificationRecipient[]
 
+  @@map("notifications")
+}
 
+model NotificationRecipient {
+  id             String    @id @default(uuid())
+  notificationId String    @map("notification_id")
+  userId         String    @map("user_id")
+  readAt         DateTime?
+  createdAt      DateTime  @default(now())
+
+  notification Notification @relation(fields: [notificationId], references: [id])
+  user         User         @relation(fields: [userId], references: [id])
+
+  @@map("notification_recipients")
+}

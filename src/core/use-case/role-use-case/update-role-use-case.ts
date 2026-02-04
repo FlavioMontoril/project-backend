@@ -1,23 +1,19 @@
-import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js";
+import { ResourceNotFoundException } from "@/core/exceptions/resource/ResourceNotFoundException.js";
 import { RoleRepository } from "@/core/repository/contracts/role-repository.js";
-import { RoleOptions } from "@/core/types/role-types.js";
+import { UpdateRolePayload } from "@/core/types/role-types.js";
 
-interface UpdateRequestDto{
-    name?: RoleOptions,
-    description?: string,
-}
-export class UpdateRoleUseCase{
-    
-    constructor(private readonly repository: RoleRepository){}
-    public async execute(id: string, payload: UpdateRequestDto){
+export class UpdateRoleUseCase {
+
+    constructor(private readonly repository: RoleRepository) { }
+    public async execute(id: string, payload: UpdateRolePayload) {
         const role = await this.repository.findById(id)
-        if(!role){
+        if (!role) {
             throw new ResourceNotFoundException()
         }
-        role
-        .setName(payload.name)
-        .setDescription(payload.description)
-        
+        role.setName(payload.name)
+        role.setDescription(payload.description)
+        role.setUpdatedAt()
+
         const updatedRole = await this.repository.update(role)
         return updatedRole
     }

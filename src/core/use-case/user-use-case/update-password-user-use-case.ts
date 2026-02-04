@@ -1,9 +1,9 @@
-import { ResourceNotFoundError } from "@/core/errors/resource-not-found.js";
+import { InvalidOperationException } from "@/core/exceptions/domain/InvalidOperationException.js";
+import { ResourceNotFoundException } from "@/core/exceptions/resource/ResourceNotFoundException.js";
+import { InvalidArgumentsException } from "@/core/exceptions/validation/InvalidArgumentsException.js";
+import { InvalidPropertiesException } from "@/core/exceptions/validation/InvalidPropertiesException.js";
 import { UserRepository } from "@/core/repository/contracts/user-repository.js";
 import { hash, compare } from "bcryptjs";
-import { InvalidArgumentsError } from "@/core/errors/invalid-arguments.js";
-import { InvalidOperationException } from "@/core/exceptions/InvalidOperationException.js";
-import { InvalidPropertiesException } from "@/core/exceptions/InvalidPropertiesException.js";
 
 interface UserPasswordUpdateProps {
     currentPassword: string,
@@ -17,11 +17,11 @@ export class UpdatePasswordUserUseCase {
         if (!payload.newPassword || !payload.currentPassword) throw new InvalidPropertiesException()
 
         const user = await this.repository.findById(id)
-        if (!user) throw new ResourceNotFoundError()
+        if (!user) throw new ResourceNotFoundException()
 
 
         const matchPassword = await compare(payload.currentPassword, user.getPasswordHash())
-        if (!matchPassword) throw new InvalidArgumentsError()
+        if (!matchPassword) throw new InvalidArgumentsException()
 
         const matchNewCurrentPassword = await compare(payload.newPassword, user.getPasswordHash())
         if (matchNewCurrentPassword) throw new InvalidOperationException()

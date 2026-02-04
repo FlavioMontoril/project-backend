@@ -1,24 +1,22 @@
 import { Task } from "@/core/entities/task-entitie.js";
-import { InvalidPropertiesException } from "@/core/exceptions/InvalidPropertiesException.js";
+import { InvalidPropertiesException } from "@/core/exceptions/validation/InvalidPropertiesException.js";
 import { TaskRepository } from "@/core/repository/contracts/task-repository.js";
-import { TaskStatus, type TaskData } from "@/core/types/task-types.js";
+import { CreateTaskPayload, TaskStatus, type TaskData } from "@/core/types/task-types.js";
 
-export class CreateTaskUseCase{
-    constructor(private readonly repository: TaskRepository){}
-    public async execute(payload: TaskData){
-        if(!payload.description || !payload.reporter || !payload.summary || ! payload.type){
+export class CreateTaskUseCase {
+    constructor(private readonly repository: TaskRepository) { }
+    public async execute(payload: CreateTaskPayload) {
+        if (!payload.description || !payload.summary || !payload.type) {
             throw new InvalidPropertiesException()
         }
         const newTask = Task.build({
             summary: payload.summary,
             description: payload.description,
-            assignee: payload.assignee ?? null,
-            reporter: payload.reporter,
             type: payload.type,
             status: payload.status ?? TaskStatus.OPEN,
             createdAt: payload.createdAt ?? new Date(),
-            userId: payload.userId ?? undefined
-        })
-        await this.repository.create(newTask)
+            userId: payload?.userId,
+        });
+        await this.repository.create(newTask);
     }
 }

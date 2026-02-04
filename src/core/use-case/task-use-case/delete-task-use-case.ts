@@ -1,5 +1,5 @@
-import { InvalidOperationException } from "@/core/exceptions/InvalidOperationException.js";
-import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js";
+import { InvalidOperationException } from "@/core/exceptions/domain/InvalidOperationException.js";
+import { ResourceNotFoundException } from "@/core/exceptions/resource/ResourceNotFoundException.js";
 import { TaskRepository } from "@/core/repository/contracts/task-repository.js";
 import { TaskStatus } from "@/core/types/task-types.js";
 

@@ -11,3 +11,5 @@ export interface UserData {
     updatedAt?: Date | null;
     tasks?: Task[];
 }
+
+export type UpdateUserPayload = Partial<Pick<UserData, "name" | "email" | "department" | "roleId">>;

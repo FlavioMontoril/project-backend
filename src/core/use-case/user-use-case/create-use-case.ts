@@ -1,11 +1,11 @@
 import { User } from "@/core/entities/user-entitie.js";
-import { InvalidPropertiesException } from "@/core/exceptions/InvalidPropertiesException.js";
 import { UserRepository } from "@/core/repository/contracts/user-repository.js";
 import { hash } from "bcryptjs"
-import { ResourceAlreadyExistsError } from "@/core/errors/resource-already-exists.js";
 import { RoleRepository } from "@/core/repository/contracts/role-repository.js";
-import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js";
-import { UserData } from "@core/types/user-type.js";
+import { UserData } from "@/core/types/user-type.js";
+import { InvalidPropertiesException } from "@/core/exceptions/validation/InvalidPropertiesException.js";
+import { ResourceNotFoundException } from "@/core/exceptions/resource/ResourceNotFoundException.js";
+import { ResourceAlreadyExistsException } from "@/core/exceptions/resource/ResourceAlreadyExistsException.js";
 
 export class CreateUserUseCase {
     constructor(
@@ -23,7 +23,7 @@ export class CreateUserUseCase {
 
         const user = await this.userRepository.findByEmail(payload.email)
         if (user) {
-            throw new ResourceAlreadyExistsError()
+            throw new ResourceAlreadyExistsException()
         }
         const hashedPassword = await hash(payload.passwordHash, 8)
 
