@@ -23,8 +23,6 @@ export class Role {
         return new Role(data)
     }
 
-    private touch(){this.updatedAt = new Date(); return this}
-
     public getId(): string { return this.id }
     public getName(): RoleOptions { return this.name }
     public getDescription(): string { return this.description }
@@ -32,8 +30,9 @@ export class Role {
     public getUpdatedAt(): Date | null { return this.updatedAt }
     public getUser(): User[] { return this.user }
 
-    public setName(name: RoleOptions = this.name) { this.name = name; return this.touch() }
-    public setDescription(description: string = this.description) { this.description = description; return this.touch() }
+    public setName(name: RoleOptions = this.name) { this.name = name; }
+    public setDescription(description: string = this.description) { this.description = description; }
+    public setUpdatedAt() { this.updatedAt = new Date() }
 
     public toJSON() {
         return {

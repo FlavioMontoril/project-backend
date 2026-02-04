@@ -29,8 +29,6 @@ export class User {
         return new User(data)
     }
 
-    private touch(){this.updatedAt = new Date(); return this}
-
     public getId(): string { return this.id }
     public getName(): string { return this.name }
     public getEmail(): string { return this.email }
@@ -41,11 +39,12 @@ export class User {
     public getUpdatedAt(): Date | null { return this.updatedAt }
     public getTasks(): Task[] | undefined { return this.tasks }
 
-    public setName(name: string) { this.name = name; return this.touch() }
-    public setEmail(email: string) { this.email = email; return this.touch() }
-    public setPasswordHash(passwordHash: string) { this.passwordHash = passwordHash; return this.touch() }
-    public setDepartment(department: string) { this.department = department; return this.touch() }
-    public setRoleId(roleId: string) { this.roleId = roleId; return this.touch() }
+    public setName(name: string) { this.name = name; }
+    public setEmail(email: string) { this.email = email; }
+    public setPasswordHash(passwordHash: string) { this.passwordHash = passwordHash; }
+    public setDepartment(department: string) { this.department = department; }
+    public setRoleId(roleId: string) { this.roleId = roleId; }
+    public setUpdatedAt() { this.updatedAt = this.updatedAt; }
 
     public toJSON() {
         return {
@@ -57,7 +56,7 @@ export class User {
             roleId: this.roleId,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt ?? null,
-            tasks: this.tasks.map(use=> use.toJSON())
+            tasks: this.tasks.map(use => use.toJSON())
         }
     }
 }

@@ -1,4 +1,4 @@
-import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js";
+import { ResourceNotFoundException } from "@/core/exceptions/resource/ResourceNotFoundException.js";
 import { RoleRepository } from "@/core/repository/contracts/role-repository.js";
 
 export class FindAllRoleUseCase {

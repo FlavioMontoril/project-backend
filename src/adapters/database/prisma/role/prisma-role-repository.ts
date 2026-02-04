@@ -5,8 +5,6 @@ import { RoleMapper } from "./role-mapper.js";
 import { RoleOptions } from "@/core/types/role-types.js";
 import { prisma } from "@/infra/database/client.js";
 
-
-
 export class PrismaRoleRepository implements RoleRepository{
     public async create(role: Role):Promise<void>{
         const rawRole: PrismaRole = RoleMapper.toPersistence(role)

@@ -1,4 +1,4 @@
-import { ResourceNotFoundException } from "@/core/exceptions/ResourceNotFoundException.js";
+import { ResourceNotFoundException } from "@/core/exceptions/resource/ResourceNotFoundException.js";
 import { TaskRepository } from "@/core/repository/contracts/task-repository.js";
 
 export class FindAllTasksUseCase{
