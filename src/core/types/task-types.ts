@@ -26,6 +26,9 @@ export enum TaskStatus {
 }
 
 export type CreateTaskDto = Pick<TaskData, "summary" | "description" | "type" | "status" | "createdAt">;
-export type CreateTaskPayload = CreateTaskDto & {userId: string,};
+export type CreateTaskPayload = CreateTaskDto & {
+    userId: string,
+    assigneeId?: string[],
+  };
 
 export type UpdateTaskPayload = Partial<Pick<TaskData, "summary" | "description"  | "type" | "status">>;
