@@ -4,7 +4,6 @@ export interface TaskData {
     summary: string,
     description: string,
     type: TaskType,
-    status?: TaskStatus,
     createdAt?: Date,
     updatedAt?: Date | null,
     userId?: string,
@@ -25,10 +24,10 @@ export enum TaskStatus {
     UNDER_REVIEW = "UNDER_REVIEW",
 }
 
-export type CreateTaskDto = Pick<TaskData, "summary" | "description" | "type" | "status" | "createdAt">;
+export type CreateTaskDto = Pick<TaskData, "summary" | "description" | "type" | "createdAt">;
 export type CreateTaskPayload = CreateTaskDto & {
     userId: string,
     assigneeId?: string[],
   };
 
-export type UpdateTaskPayload = Partial<Pick<TaskData, "summary" | "description"  | "type" | "status">>;
+export type UpdateTaskPayload = Partial<Pick<TaskData, "summary" | "description"  | "type">>;

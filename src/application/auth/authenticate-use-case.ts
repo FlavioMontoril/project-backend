@@ -23,7 +23,6 @@
         ) { }
 
         public async execute(data: AuthDto) {
-
             if (!data.email || !data.password) throw new InvalidPropertiesException()
 
             const user = await this.userRepository.findByEmail(data.email)

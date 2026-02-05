@@ -8,7 +8,6 @@ export class TaskMapper {
             summary: entity.getSummary(),
             description: entity.getDescription(),
             type: entity.getType() as TaskType,
-            status: entity.getStatus() as TaskStatus,
             createdAt: entity.getCreatedAt(),
             updatedAt: entity.getUpdatedAt() ?? null,
             userId: entity.getUserId() ?? null
@@ -20,7 +19,6 @@ export class TaskMapper {
             summary: raw.summary,
             description: raw.description,
             type: raw.type as TaskType,
-            status: raw.status as TaskStatus,
             createdAt: raw.createdAt ?? new Date(),
             updatedAt: raw.updatedAt,
             userId: raw.userId ?? undefined,
