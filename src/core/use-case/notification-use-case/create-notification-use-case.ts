@@ -14,7 +14,7 @@ export class CreateNotificationUseCase {
     private readonly repository: NotificationRepository
   ) { }
 
-  public async execute(payload: CreateNotificationPayload) {
+  public async execute(payload: CreateNotificationPayload): Promise<Notification> {
     if (!payload.content || !payload.triggeredId) {
       throw new InvalidPropertiesException();
     }
@@ -27,5 +27,6 @@ export class CreateNotificationUseCase {
     });
 
     await this.repository.create(notification);
+    return notification
   }
 }

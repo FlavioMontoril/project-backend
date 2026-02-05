@@ -1,7 +1,7 @@
 export interface TasksUsersData {
   id?: string;
   reporterId: string;
-  assigneeId: string[] | string;
+  assigneeId: string;
   taskId: string,
   status?: TaskStatus;
   updatedAt?: Date;
@@ -17,4 +17,4 @@ export enum TaskStatus {
   CONTINUED = "CONTINUED",
 }
 
-export type CreateTasksUsersPayload = Pick<TasksUsersData, "reporterId" | "assigneeId" | "status" | "taskId">
+export type CreateTasksUsersPayload = Pick<TasksUsersData, "reporterId" | "assigneeId" | "taskId">

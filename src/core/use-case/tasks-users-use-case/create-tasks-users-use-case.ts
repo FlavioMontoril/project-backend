@@ -3,14 +3,12 @@ import { InvalidOperationException } from "@/core/exceptions/domain/InvalidOpera
 import { ResourceAlreadyExistsException } from "@/core/exceptions/resource/ResourceAlreadyExistsException.js";
 import { InvalidPropertiesException } from "@/core/exceptions/validation/InvalidPropertiesException.js";
 import { TasksUsersRepository } from "@/core/repository/contracts/tasks-users-repository.js";
-import { CreateTasksUsersPayload } from "@/core/types/tasks-users.js";
+import { CreateTasksUsersPayload, TaskStatus } from "@/core/types/tasks-users.js";
 
 export class CreateTasksUsersUseCase {
-  constructor(private readonly tasksUsersRepository: TasksUsersRepository) {}
-  public async execute(
-    payload: CreateTasksUsersPayload,
-  ): Promise<Record<string, string>[]> {
-    if (!payload.reporterId || !payload.assigneeId || !payload.status) {
+  constructor(private readonly tasksUsersRepository: TasksUsersRepository) { }
+  public async execute(payload: CreateTasksUsersPayload): Promise<Record<string, string>[]> {
+    if (!payload.reporterId || !payload.assigneeId) {
       throw new InvalidPropertiesException();
     }
     if (payload.reporterId === payload.assigneeId) {
@@ -23,7 +21,7 @@ export class CreateTasksUsersUseCase {
 
     const results: Record<string, string>[] = [];
 
-    for await(const assigneeIds of assignees) {
+    for await (const assigneeIds of assignees) {
       const alreadyExists =
         await this.tasksUsersRepository.findByTaskAndAssignee(
           payload.taskId,
@@ -36,10 +34,10 @@ export class CreateTasksUsersUseCase {
       const newTasksUsers = TasksUsers.build({
         reporterId: payload.reporterId,
         taskId: payload.taskId,
-        assigneeId: assigneeIds,
-        status: payload.status,
+        assigneeId: payload.assigneeId,
+        status: TaskStatus.OPEN,
       });
-
+      console.log("LILI", newTasksUsers)
       await this.tasksUsersRepository.save(newTasksUsers);
 
       results.push({ id: newTasksUsers?.getId() });

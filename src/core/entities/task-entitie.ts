@@ -6,7 +6,6 @@ export class Task {
     private summary: string
     private description: string
     private type: TaskType
-    private status: TaskStatus
     private readonly createdAt: Date
     private updatedAt: Date | null
     private userId: string | null
@@ -18,7 +17,6 @@ export class Task {
         this.summary = data.summary;
         this.description = data.description;
         this.type = data.type;
-        this.status = data.status ?? TaskStatus.OPEN;
         this.createdAt = data.createdAt ?? new Date();
         this.updatedAt = data.updatedAt ?? null
         this.userId = data.userId ?? null
@@ -34,7 +32,6 @@ export class Task {
     public getSummary(): string { return this.summary }
     public getDescription(): string { return this.description }
     public getType(): TaskType { return this.type }
-    public getStatus(): TaskStatus { return this.status }
     public getCreatedAt(): Date { return this.createdAt }
     public getUpdatedAt(): Date | null { return this.updatedAt }
     public getUserId(): string | null { return this.userId }
@@ -43,7 +40,6 @@ export class Task {
     public setSummary(summary: string = this.summary) { this.summary = summary; }
     public setDescription(description: string = this.description) { this.description = description; }
     public setType(type: TaskType = this.type) { this.type = type; }
-    public setStatus(status: TaskStatus = this.status) { this.status = status; }
     public setUserId(userId: string | null = this.userId) { this.userId = userId; }
     public setUpdatedAt() { this.updatedAt = new Date(); }
     public setArchived() { this.archived = !this.archived }
@@ -55,7 +51,6 @@ export class Task {
             summary: this.summary,
             description: this.description,
             type: this.type,
-            status: this.status,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt ?? null,
             userId: this.userId ?? null
