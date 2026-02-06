@@ -29,7 +29,7 @@ export class TaskCreatedListener {
                 const notificationSaved = await createNotification.execute(notification);
                 const users = await findUsers.execute();
 
-                for (const user of users) {
+                for await (const user of users) {
                     const notificationRecipient = {
                         notificationId: notificationSaved.getId().toString(),
                         userId: user.getId().toString(),

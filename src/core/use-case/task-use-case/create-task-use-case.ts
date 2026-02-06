@@ -30,18 +30,17 @@ export class CreateTaskUseCase {
       newTask.getUserId(),
     );
 
-
+    const tasksUsersRepository = CreateTasksUsersFactory.build();
+    
     if (payload.assigneeId && payload.assigneeId.length > 0) {
       for (const assigneeId of payload.assigneeId) {
-        const tasksUsersRepository = CreateTasksUsersFactory.build();
         await tasksUsersRepository.execute({
           taskId: newTask.getId(),
           reporterId: payload.userId,
           assigneeId: assigneeId,
         });
       }
-
-      this.dispatcher.publish(event)
     }
+    this.dispatcher.publish(event)
   }
 }

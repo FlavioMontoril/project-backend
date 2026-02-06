@@ -34,12 +34,11 @@ export class CreateTasksUsersUseCase {
       const newTasksUsers = TasksUsers.build({
         reporterId: payload.reporterId,
         taskId: payload.taskId,
-        assigneeId: payload.assigneeId,
+        assigneeId: assigneeIds,
         status: TaskStatus.OPEN,
       });
-      console.log("LILI", newTasksUsers)
-      await this.tasksUsersRepository.save(newTasksUsers);
 
+      await this.tasksUsersRepository.save(newTasksUsers);
       results.push({ id: newTasksUsers?.getId() });
     }
     return results;

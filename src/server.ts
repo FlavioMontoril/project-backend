@@ -21,7 +21,7 @@ app.use(cors())
 // app.use(cookieParser());
 // UTILIZADO(CREDENTIALS:TRUE) PARA JWT VIA COOKIES PROIBIDO ORIGIN:"*"
 // app.use(cors({
-//     origin: "http://localhost:5173",
+//     origin: "http://localhost:0000",
 //     credentials: true,
 // }))
 app.use(express.urlencoded({ extended: true }))
