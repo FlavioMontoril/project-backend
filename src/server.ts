@@ -13,6 +13,7 @@ dotenv.config()
 const app = express()
 const server = http.createServer(app)
 const PORT = process.env.PORT || 3333
+// const CLIENT_URL = process.env.CLIENT_URL
 
 app.use(express.json())
 // UTILIZADO PARA JWT VIA HEADERS
@@ -21,9 +22,9 @@ app.use(cors())
 // app.use(cookieParser());
 // UTILIZADO(CREDENTIALS:TRUE) PARA JWT VIA COOKIES PROIBIDO ORIGIN:"*"
 // app.use(cors({
-//     origin: "http://localhost:0000",
+//     origin: CLIENT_URL,
 //     credentials: true,
-// }))
+// }));
 app.use(express.urlencoded({ extended: true }))
 app.use(router)
 app.use(errorHandler)
