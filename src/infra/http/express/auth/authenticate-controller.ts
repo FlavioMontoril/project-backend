@@ -14,7 +14,6 @@ class AuthenticateController {
 
         const useCase = MakeUserWithRoleFactory.make();
         const result = await useCase.execute({ email, password });
-        console.log("Result", result)
         res.status(200).json(result);
         return
     }

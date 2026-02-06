@@ -2,9 +2,9 @@ import { CreateNotificationFactory } from "@/core/factory/notification-factory/c
 import { EventEmitterSingletonInstance } from "../event-emitter-singleton.js";
 import { TaskCreatedEvent } from "../task-created-event.js";
 import { CreateNotificationRecipientFactory } from "@/core/factory/notification-recipient-factory/create-notification-recipient-factory.js";
-import { MakeFindAllUsersFactory } from "@/core/factory/user-factory/make-find-all-users-factory.js";
 import { TaskAssembler } from "../assembler/task-assmbler.js";
 import { SocketService } from "@/adapters/lib/socketIO-service.js";
+import { NotificatioRecipientsResolverFactory } from "@/core/factory/notification-recipient-factory/notification-recipients-resolver-factory.js";
 
 
 export class TaskCreatedListener {
@@ -12,12 +12,11 @@ export class TaskCreatedListener {
         EventEmitterSingletonInstance.on(TaskCreatedEvent.name,
             async (event: TaskCreatedEvent) => {
                 console.log(
-                    `[Listener] Task criada: ${event.taskId} → usuário ${event.summary}`
+                    `[Listener] Task criada: ${event.taskId} → usuário ${event.assigneeIds}`
                 );
 
                 const createNotification = CreateNotificationFactory.build();
                 const createNotificationRecipient = CreateNotificationRecipientFactory.build();
-                const findUsers = MakeFindAllUsersFactory.build();
 
                 const notification = {
                     content: `Task created: ${event.summary} (${event.taskId})`,
@@ -27,9 +26,10 @@ export class TaskCreatedListener {
                 };
 
                 const notificationSaved = await createNotification.execute(notification);
-                const users = await findUsers.execute();
+                const recipient = NotificatioRecipientsResolverFactory.build();
+                const usersReceived = await recipient.execute(event.userId, event.assigneeIds);
 
-                for await (const user of users) {
+                for await (const user of usersReceived) {
                     const notificationRecipient = {
                         notificationId: notificationSaved.getId().toString(),
                         userId: user.getId().toString(),
@@ -37,7 +37,6 @@ export class TaskCreatedListener {
                     };
                     await createNotificationRecipient.execute(notificationRecipient);
                 }
-
                 try {
                     const payload = await TaskAssembler.build(event, notificationSaved.getId().toString());
                     SocketService.emit(TaskCreatedEvent.name, payload);

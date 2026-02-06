@@ -28,6 +28,7 @@ export class CreateTaskUseCase {
       newTask.getId(),
       newTask.getSummary(),
       newTask.getUserId(),
+      payload.assigneeId,
     );
 
     const tasksUsersRepository = CreateTasksUsersFactory.build();

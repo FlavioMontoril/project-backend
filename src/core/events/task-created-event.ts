@@ -5,6 +5,7 @@ export class TaskCreatedEvent extends DomainEvent {
         public readonly taskId: string,
         public readonly summary: string,
         public readonly userId: string,
+        public readonly assigneeIds: string[],
     ) {
         super();
     }
