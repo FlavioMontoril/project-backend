@@ -10,7 +10,7 @@ export class CreateTaskUseCase {
   constructor(
     private readonly repository: TaskRepository,
     private readonly dispatcher: EventDispatcher,
-  ) { }
+  ) {}
   public async execute(payload: CreateTaskPayload) {
     if (!payload.description || !payload.summary || !payload.type) {
       throw new InvalidPropertiesException();
@@ -31,16 +31,18 @@ export class CreateTaskUseCase {
     );
 
     const tasksUsersRepository = CreateTasksUsersFactory.build();
-    
+
     if (payload.assigneeId && payload.assigneeId.length > 0) {
-      for (const assigneeId of payload.assigneeId) {
-        await tasksUsersRepository.execute({
-          taskId: newTask.getId(),
-          reporterId: payload.userId,
-          assigneeId: assigneeId,
-        });
-      }
+      await Promise.all(
+        payload.assigneeId.map((assigneeId) =>
+          tasksUsersRepository.execute({
+            taskId: newTask.getId(),
+            reporterId: payload.userId,
+            assigneeId: assigneeId,
+          }),
+        ),
+      );
     }
-    this.dispatcher.publish(event)
+    this.dispatcher.publish(event);
   }
 }
