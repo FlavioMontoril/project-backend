@@ -47,8 +47,8 @@ export class NotificationRecipient {
         return this.createdAt;
     }
 
-    public markAsRead(date: Date = new Date()) {
-        this.readAt = date;
+    public markAsRead() {
+        this.readAt = new Date();
     }
 
     public isRead(): boolean {

@@ -14,6 +14,25 @@ export class NotificationRecipientPrismaRepository
         });
     }
 
+    public async save(recipient: NotificationRecipient): Promise<void> {
+        const data = NotificationRecipientMapper.toPersistence(recipient);
+        await prisma.notificationRecipient.upsert({
+            where: { id: data.id },
+            update: { readAt: data.readAt },
+            create: data,
+        });
+    }
+
+    public async markAllAsRead(userId: string): Promise<void> {
+        await prisma.notificationRecipient.updateMany({
+            where: {
+                userId,
+                readAt: null,
+            },
+            data: { readAt: new Date() }
+        });
+    }
+
     public async findById(
         id: string
     ): Promise<NotificationRecipient | null> {

@@ -7,5 +7,6 @@ export interface TaskRepository {
     update: (task: Task) => Promise<Task>
     findAll: () => Promise<Task[]>
     findById: (id: string) => Promise<Task | null>
+    findByCode: (code: string) => Promise<Task | null>
     findByType: (type: TaskType) => Promise<Task[] | null>
 }

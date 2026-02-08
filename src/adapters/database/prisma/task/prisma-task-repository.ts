@@ -1,8 +1,8 @@
 import { Task } from "@/core/entities/task-entitie.js";
 import { TaskRepository } from "@/core/repository/contracts/task-repository.js";
-import {  Task as PrismaTask } from "@/generated/prisma/index.js"
+import { Task as PrismaTask } from "@/generated/prisma/index.js"
 import { TaskMapper } from "./task-mapper.js";
-import { TaskType } from "@/core/types/task-types.js";
+import { TaskStatus, TaskType } from "@/core/types/task-types.js";
 import { prisma } from "@/infra/database/client.js";
 
 
@@ -34,6 +34,14 @@ export class PrismaTaskRepository implements TaskRepository {
         });
         if (!rawTask) return null
         return TaskMapper.toDomain(rawTask)
+    }
+
+    public async findByCode(code: TaskStatus): Promise<Task> {
+        const rawTask: PrismaTask | null = await prisma.task.findUnique({
+            where: { code }
+        });
+        if (!rawTask) return null
+        return TaskMapper.toDomain(rawTask);
     }
 
     public async findByType(type: TaskType): Promise<Task[] | null> {

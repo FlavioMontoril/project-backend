@@ -1,13 +1,15 @@
 import { TasksUsers } from "@/core/entities/tasks-users-entity.js";
 import { InvalidOperationException } from "@/core/exceptions/domain/InvalidOperationException.js";
-// import { ResourceAlreadyExistsException } from "@/core/exceptions/resource/ResourceAlreadyExistsException.js";
 import { InvalidPropertiesException } from "@/core/exceptions/validation/InvalidPropertiesException.js";
 import { TasksUsersRepository } from "@/core/repository/contracts/tasks-users-repository.js";
 import { CreateTasksUsersPayload, TaskStatus } from "@/core/types/tasks-users.js";
 
 export class CreateTasksUsersUseCase {
   constructor(private readonly tasksUsersRepository: TasksUsersRepository) { }
-  public async execute(payload: CreateTasksUsersPayload): Promise<Record<string, string>[]> {
+  public async execute(payload: CreateTasksUsersPayload):
+     Promise<Record<string, string>[]>
+    // Promise<void>
+     {
     if (!payload.reporterId || !payload.assigneeId) {
       throw new InvalidPropertiesException();
     }
@@ -22,17 +24,6 @@ export class CreateTasksUsersUseCase {
     const results: Record<string, string>[] = [];
 
     for await (const assigneeIds of assignees) {
-
-      //Prisma Possui @unique([taskId, assigneeID]) ***Não precisa de verificação de duplicidade***
-      // const alreadyExists =
-      //   await this.tasksUsersRepository.findByTaskAndAssignee(
-      //     payload.taskId,
-      //     assigneeIds,
-      //   );
-      // if (alreadyExists) {
-      //   throw new ResourceAlreadyExistsException();
-      // }
-
       const newTasksUsers = TasksUsers.build({
         reporterId: payload.reporterId,
         taskId: payload.taskId,

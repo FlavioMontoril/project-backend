@@ -3,6 +3,7 @@ import { router as taskRoutes } from "@/infra/http/routes/task-routes.js";
 import {router as roleRoutes} from "@/infra/http/routes/role-routes.js"
 import {router as userRoutes} from "@/infra/http/routes/user-routes.js"
 import { router as authRoutes } from "@/infra/http/express/auth/_index.js";
+import {router as notificationRoutes} from "@/infra/http/routes/notification-routes.js"
 
 export const router = Router()
 
@@ -11,3 +12,4 @@ router
 .use('/v1/tasks', taskRoutes)
 .use('/v1/roles', roleRoutes)
 .use('/v1/users', userRoutes)
+.use('/v1/notifications', notificationRoutes)

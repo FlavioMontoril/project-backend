@@ -15,13 +15,15 @@ datasource db {
 }
 
 model Task {
-  id          String    @id @default(uuid())
-  summary     String    @db.VarChar(40)
-  description String    @db.VarChar(100)
+  id          String     @id @default(uuid())
+  code        String     @unique @db.VarChar(5)
+  summary     String     @db.VarChar(40)
+  description String     @db.VarChar(100)
   type        TaskType
-  createdAt   DateTime? @map("created_at")
-  updatedAt   DateTime? @map("updated_at")
-  userId      String?   @map("user_id")
+  status      TaskStatus?
+  createdAt   DateTime?  @map("created_at")
+  updatedAt   DateTime?  @map("updated_at")
+  userId      String?    @map("user_id")
 
   user       User?       @relation(fields: [userId], references: [id])
   tasksUsers TasksUser[]
@@ -41,6 +43,7 @@ enum TaskStatus {
   DONE
   IN_PROGRESS
   UNDER_REVIEW
+  ASSIGNED
 }
 
 model Role {
@@ -116,9 +119,9 @@ model TasksUser {
   reporter User @relation("TaskReporter", fields: [reporterId], references: [id])
 
   status    TaskStatus
-  updatedAt DateTime?   @map("updated_at")
+  updatedAt DateTime?  @map("updated_at")
   createdAt DateTime   @map("created_at")
 
-  @@map("tasks_user")
   @@unique([taskId, assigneeId])
+  @@map("tasks_user")
 }
