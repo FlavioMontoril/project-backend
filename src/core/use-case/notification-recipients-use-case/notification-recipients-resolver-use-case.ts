@@ -7,7 +7,7 @@ export class NotificatioRecipientsResolverUseCase {
         private readonly userRepository: UserRepository,
         private readonly roleRepository: RoleRepository,
     ) { }
-    public async execute(triggeredId: string, assigneeIds?: string[]) {
+    public async execute(triggeredId: string, assigneeId?: string) {
         const roles = await this.roleRepository.findAll()
         const users = await this.userRepository.findAll();
 
@@ -15,13 +15,10 @@ export class NotificatioRecipientsResolverUseCase {
 
         const roleGuestId = roles.find((role) => role.getName() === RoleOptions.GUEST).getId();
 
-        if (assigneeIds && assigneeIds.length > 0) {
-            return users
-            .filter((user) =>
-                    assigneeIds.includes(user.getId()) &&
-                    user.getId() !== triggeredId &&
-                    user.getRoleId() !== roleGuestId
-            );
+        if (assigneeId) {
+            const assignee = users
+            .find((user) => user.getId() === assigneeId);
+            return assignee ? [assignee] : []
         };
         return users.filter((user) => user.getId() !== triggeredId && user.getRoleId() !== roleGuestId);
     }

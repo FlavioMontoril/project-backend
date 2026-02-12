@@ -1,9 +1,0 @@
-import { PrismaTasksUsersRepository } from "@/adapters/database/prisma/tasks-users/prisma-tasks-users-repository.js";
-import { CreateTasksUsersUseCase } from "@/core/use-case/tasks-users-use-case/create-tasks-users-use-case.js";
-
-export class CreateTasksUsersFactory {
-    public static build() {
-        const repository = new PrismaTasksUsersRepository();
-        return new CreateTasksUsersUseCase(repository);
-    }
-}

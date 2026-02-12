@@ -15,18 +15,23 @@ datasource db {
 }
 
 model Task {
-  id          String     @id @default(uuid())
-  code        String     @unique @db.VarChar(5)
-  summary     String     @db.VarChar(40)
-  description String     @db.VarChar(100)
-  type        TaskType
-  status      TaskStatus?
-  createdAt   DateTime?  @map("created_at")
-  updatedAt   DateTime?  @map("updated_at")
-  userId      String?    @map("user_id")
+  id          String @id @default(uuid())
+  code        String @unique @db.VarChar(5)
+  summary     String @db.VarChar(40)
+  description String @db.VarChar(100)
 
-  user       User?       @relation(fields: [userId], references: [id])
-  tasksUsers TasksUser[]
+  type   TaskType
+  status TaskStatus?
+
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+
+  reporterId String @map("reporter_id")
+  reporter   User   @relation("TaskCreatedBy", fields: [reporterId], references: [id])
+
+  assigneeId String? @map("assignee_id")
+  assignee   User?   @relation("TaskAssignedTo", fields: [assigneeId], references: [id])
+  archived   Boolean
 
   @@map("tasks")
 }
@@ -65,20 +70,22 @@ enum RoleOptions {
 }
 
 model User {
-  id                     String                  @id @default(uuid())
-  name                   String                  @db.VarChar(50)
-  email                  String                  @unique
-  passwordHash           String                  @map("password_hash")
-  department             String                  @db.VarChar(50)
-  roleId                 String
-  role                   Role                    @relation(fields: [roleId], references: [id])
-  createdAt              DateTime                @default(now()) @map("created_at")
-  updatedAt              DateTime?               @map("updated_at")
-  tasks                  Task[]
+  id           String @id @default(uuid())
+  name         String @db.VarChar(50)
+  email        String @unique
+  passwordHash String @map("password_hash")
+  department   String @db.VarChar(50)
+  roleId       String
+  role         Role   @relation(fields: [roleId], references: [id])
+
+  createdAt DateTime  @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+
+  createdTasks  Task[] @relation("TaskCreatedBy")
+  assignedTasks Task[] @relation("TaskAssignedTo")
+
   notifications          Notification[]
   notificationRecipients NotificationRecipient[]
-  reportedTasks          TasksUser[]             @relation("TaskReporter")
-  assignedTasks          TasksUser[]             @relation("TaskAssignee")
 
   @@map("users")
 }
@@ -87,7 +94,7 @@ model Notification {
   id                     String                  @id @default(uuid())
   content                String                  @db.VarChar(100)
   triggeredId            String                  @map("triggered_id")
-  user                   User                    @relation(fields: [triggeredId], references: [id])
+  triggeredBy            User                    @relation(fields: [triggeredId], references: [id])
   entityType             String                  @db.VarChar(10)
   createdAt              DateTime                @map("created_at")
   notificationRecipients NotificationRecipient[]
@@ -100,28 +107,10 @@ model NotificationRecipient {
   notificationId String    @map("notification_id")
   userId         String    @map("user_id")
   readAt         DateTime? @map("read_at")
-  createdAt      DateTime  @default(now()) @map("created_at")
+  createdAt      DateTime  @map("created_at")
 
   notification Notification @relation(fields: [notificationId], references: [id])
   user         User         @relation(fields: [userId], references: [id])
 
   @@map("notification_recipients")
-}
-
-model TasksUser {
-  id         String @id @default(uuid())
-  reporterId String @map("reporter_id")
-  assigneeId String @map("assignee_id")
-  taskId     String @map("task_id")
-
-  task     Task @relation(fields: [taskId], references: [id])
-  assignee User @relation("TaskAssignee", fields: [assigneeId], references: [id])
-  reporter User @relation("TaskReporter", fields: [reporterId], references: [id])
-
-  status    TaskStatus
-  updatedAt DateTime?  @map("updated_at")
-  createdAt DateTime   @map("created_at")
-
-  @@unique([taskId, assigneeId])
-  @@map("tasks_user")
 }
