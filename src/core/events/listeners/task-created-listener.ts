@@ -12,7 +12,7 @@ export class TaskCreatedListener {
         EventEmitterSingletonInstance.on(TaskCreatedEvent.name,
             async (event: TaskCreatedEvent) => {
                 console.log(
-                    `[Listener] Task criada: ${event.taskId} → usuário ${event.assigneeIds}`
+                    `[Listener] Task criada: ${event.taskId} → usuário ${event.assigneeId}`
                 );
 
                 const createNotification = CreateNotificationFactory.build();
@@ -20,14 +20,14 @@ export class TaskCreatedListener {
 
                 const notification = {
                     content: `Task created: ${event.summary} (${event.taskId})`,
-                    triggeredId: event.userId,
+                    triggeredId: event.reporterId,
                     entityType: "Task",
                     createdAt: event.occurredOn,
                 };
 
                 const notificationSaved = await createNotification.execute(notification);
                 const recipient = NotificatioRecipientsResolverFactory.build();
-                const usersReceived = await recipient.execute(event.userId, event.assigneeIds);
+                const usersReceived = await recipient.execute(event.reporterId, event.assigneeId);
 
                 for await (const user of usersReceived) {
                     const notificationRecipient = {

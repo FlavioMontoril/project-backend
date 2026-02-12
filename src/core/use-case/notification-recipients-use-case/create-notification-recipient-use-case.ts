@@ -21,7 +21,6 @@ export class CreateNotificationRecipientUseCase {
     const recipient = NotificationRecipient.build({
       notificationId: payload.notificationId,
       userId: payload.userId,
-      createdAt: payload.createdAt ?? new Date(),
     });
 
     await this.repository.create(recipient);

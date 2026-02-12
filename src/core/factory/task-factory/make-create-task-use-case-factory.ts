@@ -6,7 +6,6 @@ export class MakeCreateTaskUseCaseFactory {
     public static build() {
         const repository = new PrismaTaskRepository()
         const dispatcher = new EventEmitterDispatcher();
-        const useCase = new CreateTaskUseCase(repository, dispatcher)
-        return useCase;
+        return new CreateTaskUseCase(repository, dispatcher)
     }
 }

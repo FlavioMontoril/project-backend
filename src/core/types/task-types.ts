@@ -8,7 +8,8 @@ export interface TaskData {
     status?: TaskStatus,
     createdAt?: Date,
     updatedAt?: Date | null,
-    userId?: string,
+    reporterId: string,
+    assigneeId?: string,
     archived?: boolean,
 }
 
@@ -24,13 +25,8 @@ export enum TaskStatus {
     DONE = "DONE",
     IN_PROGRESS = "IN_PROGRESS",
     UNDER_REVIEW = "UNDER_REVIEW",
-    ASSIGNED = "ASSIGNED",
+    CANCELED = "CANCELED",
 }
 
-export type CreateTaskDto = Pick<TaskData, "code" | "summary" | "description" | "type" | "status" | "createdAt">;
-export type CreateTaskPayload = CreateTaskDto & {
-    userId: string,
-    assigneeId?: string[],
-};
-
-export type UpdateTaskPayload = Partial<Pick<TaskData, "summary" | "description" | "type" | "status">>;
+export type CreateTaskPayload = Pick<TaskData, "code" | "summary" | "description" | "type" | "status" | "createdAt" | "assigneeId">;
+export type UpdateTaskPayload = Partial<Pick<TaskData, "summary" | "description" | "type" | "status" | "assigneeId">>;
