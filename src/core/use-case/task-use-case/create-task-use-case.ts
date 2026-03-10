@@ -11,20 +11,19 @@ export class CreateTaskUseCase {
     private readonly repository: TaskRepository,
     private readonly dispatcher: EventDispatcher,
   ) { }
-  public async execute(payload: CreateTaskPayload, userId: string) {
-    if (!payload.description || !payload.summary || !payload.type || !payload.code || !payload.assigneeId || !userId ) {
+  public async execute(payload: CreateTaskPayload, userId: string): Promise<Record<string, string>> {
+    if (!payload.description || !payload.summary || !payload.type || !payload.code || !userId) {
       throw new InvalidPropertiesException();
     }
+
     const task = await this.repository.findByCode(payload.code);
     if (task) throw new ResourceAlreadyExistsException();
-
     const newTask = Task.build({
       code: payload.code,
       summary: payload.summary,
       description: payload.description,
       type: payload.type,
-      status: TaskStatus.OPEN,
-      createdAt: payload.createdAt ?? new Date(),
+      status: payload.status,
       reporterId: userId,
       assigneeId: payload.assigneeId,
     });
@@ -38,5 +37,6 @@ export class CreateTaskUseCase {
     );
 
     this.dispatcher.publish(event);
+    return { id: newTask.getId() }
   }
 }

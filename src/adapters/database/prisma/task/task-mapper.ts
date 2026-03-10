@@ -12,7 +12,9 @@ export class TaskMapper {
             status: entity.getStatus() as TaskStatus,
             createdAt: entity.getCreatedAt(),
             updatedAt: entity.getUpdatedAt() ?? null,
-            userId: entity.getUserId() ?? null
+            reporterId: entity.getReporterId(),
+            assigneeId: entity.getAssigneeId() ?? null,
+            archived: entity.getArchived()
         }
     }
     public static toDomain(raw: PrismaTask): Task {
@@ -25,7 +27,9 @@ export class TaskMapper {
             status: raw.status as TaskStatus,
             createdAt: raw.createdAt ?? new Date(),
             updatedAt: raw.updatedAt,
-            userId: raw.userId ?? undefined,
+            reporterId: raw.reporterId,
+            assigneeId: raw.assigneeId ?? null,
+            archived: raw.archived
         })
     }
 }

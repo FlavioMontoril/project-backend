@@ -1,9 +1,6 @@
 import { randomUUID } from "crypto";
-import {
-  TaskStatus,
-  type TaskData,
-  type TaskType,
-} from "@/core/types/task-types.js";
+import { TaskData, TaskStatus, TaskType } from "../types/task-types.js";
+
 
 export class Task {
   private readonly id: string;
@@ -15,7 +12,7 @@ export class Task {
   private readonly createdAt: Date;
   private updatedAt: Date | null;
   private readonly reporterId: string;
-  private assigneeId: string;
+  private assigneeId: string | null;
   private archived: boolean;
 
   private constructor(data: TaskData) {
@@ -28,8 +25,8 @@ export class Task {
     this.createdAt = data.createdAt ?? new Date();
     this.updatedAt = data.updatedAt ?? null;
     this.reporterId = data.reporterId;
-    this.assigneeId = data.assigneeId;
-    this.archived = data.archived ?? null;
+    this.assigneeId = data.assigneeId ?? null;
+    this.archived = data.archived ?? false;
   }
 
   public static build(data: TaskData) {
@@ -63,7 +60,7 @@ export class Task {
   public getReporterId(): string {
     return this.reporterId;
   }
-  public getAssigneeId(): string {
+  public getAssigneeId(): string | null {
     return this.assigneeId;
   }
   public getArchived(): boolean {
@@ -103,6 +100,8 @@ export class Task {
       createdAt: this.createdAt,
       updatedAt: this.updatedAt ?? null,
       reporterId: this.reporterId ?? null,
+      assigneeId: this.assigneeId ?? null,
+      archived: this.archived,
     };
   }
 }

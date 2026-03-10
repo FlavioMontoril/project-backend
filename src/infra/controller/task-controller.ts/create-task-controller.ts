@@ -11,16 +11,15 @@ class CreateTaskController {
       description: z.string(),
       type: z.nativeEnum(TaskType),
       status: z.nativeEnum(TaskStatus).optional(),
-      createdAt: z.coerce.date().optional(),
       assigneeId: z.string().optional(),
     });
 
     const body = bodySchema.parse(req.body);
     const userId = req.user!.id;
     const useCase = MakeCreateTaskUseCaseFactory.build();
-    await useCase.execute(body, userId);
+    const response = await useCase.execute(body, userId);
 
-    return res.status(201).json({ message: "Task Created Succesfully" });
+    return res.status(201).json(response);
   }
 }
 export default new CreateTaskController();

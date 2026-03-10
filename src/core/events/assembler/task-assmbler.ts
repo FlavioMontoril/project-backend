@@ -18,6 +18,7 @@ export class TaskAssembler {
             id: notificationId,
             read: !!readAt,
             occurredOn: occurredOn || event.occurredOn,
+            triggeredId: event.reporterId,
         };
     }
 }
