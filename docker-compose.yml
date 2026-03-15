@@ -1,11 +1,31 @@
-version: '3.8'
+# version: '3.8'
+
+# services:
+#   mysql:
+#     image: mysql:8.0.43
+#     container_name: mysql_pb
+#     ports:
+#      - "${DB_PORT}:3306"
+#     environment:
+#       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+#       MYSQL_DATABASE: ${DB_NAME}
+#       MYSQL_USER: ${DB_USER}
+#       MYSQL_PASSWORD: ${DB_PASS}
+#     volumes:
+#       - mysql_data:/var/lib/mysql
+
+# volumes:
+#   mysql_data:
+
 
 services:
+  # --- SERVIÇO DO BANCO DE DADOS ---
   mysql:
     image: mysql:8.0.43
-    container_name: mysql_pb
+    container_name: mysql_project_backend
+    restart: always
     ports:
-     - "${DB_PORT}:3306"
+      - "${DB_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
       MYSQL_DATABASE: ${DB_NAME}
@@ -13,6 +33,24 @@ services:
       MYSQL_PASSWORD: ${DB_PASS}
     volumes:
       - mysql_data:/var/lib/mysql
+
+  # --- SERVIÇO DA SUA API ---
+  api:
+    build: .
+    container_name: api_project_backend
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      DATABASE_URL: "mysql://${DB_USER}:${DB_PASS}@mysql:3306/${DB_NAME}"
+      PORT: ${PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      NODE_ENV: development
+    volumes:
+      - .:/app
+      - /app/node_modules
 
 volumes:
   mysql_data:
