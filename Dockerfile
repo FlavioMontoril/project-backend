@@ -1,11 +1,20 @@
-FROM node:22
+FROM node:22-slim
+
+# Instalar openssl (necessário para Prisma). Apenas para node:22-slim
+RUN apt-get update \
+    && apt-get install -y openssl \
+    && rm -rf /var/lib/apt/lists/*
 
 # Instalamos o openssl, necessário para o Prisma rodar no Linux
 # RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/* . Apenas para node:22-alpine
-# RUN apk add --no-cache openssl
+# OU
+# RUN apk add --no-cache openssl . Apenas para node:22-alpine
 
 # Pasta onde o código ficará dentro do container
 WORKDIR /app
+
+# Ativa o Corepack (para usar Yarn)
+RUN corepack enable
 
 # Copiamos apenas os arquivos de dependências primeiro (aproveita o cache do Docker)
 COPY package.json yarn.lock ./

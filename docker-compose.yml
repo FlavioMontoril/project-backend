@@ -44,7 +44,7 @@ services:
     ports:
       - "${PORT}:${PORT}"
     environment:
-      DATABASE_URL: "mysql://${DB_USER}:${DB_PASS}@mysql:3306/${DB_NAME}"
+      DATABASE_URL: ${DATABASE_DOCKER_URL}
       PORT: ${PORT}
       JWT_SECRET: ${JWT_SECRET}
       NODE_ENV: development
